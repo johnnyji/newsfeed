@@ -35,7 +35,7 @@ var App = React.createClass({
     var s = this.state;
     var p = this.props;
 
-    if (!s.componentReady) { return <h1>Loading...</h1> }
+    if (!s.componentReady) { return <FullPageSpinner /> }
     return (
       <div className="app-container">
         {s.loginModal && <LoginModal />}

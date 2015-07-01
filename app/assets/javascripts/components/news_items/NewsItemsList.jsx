@@ -34,7 +34,7 @@ var NewsItemsList = React.createClass({
       return <NewsItemCard key={i} newsItem={newsItem} currentUser={p.currentUser} />
     });
 
-    if (!s.componentReady) { return <h1>Loading...</h1> }
+    if (!s.componentReady) { return <Spinner /> }
 
     return (
       <div className="news-item-list-container">

@@ -4,7 +4,7 @@
   @include position-center(absolute, 50%, 50%);
   top: 40%;
   left: 50%;
-  width: 300px;
+  width: 100px;
   height: 100px;
   .sk-bounce1,
   .sk-bounce2,
@@ -12,5 +12,17 @@
     width: 50px;
     height: 50px;
     margin: 0 0.3em;
+    background-color: $primary-brand-color;
+  }
+}
+
+#normal-spinner {
+  .sk-bounce1,
+  .sk-bounce2,
+  .sk-bounce3 {
+    width: 30px;
+    height: 30px;
+    margin: 0 0.3em;
+    background-color: $primary-brand-color;
   }
 }

@@ -1,5 +1,6 @@
 var NewsItemActions = Reflux.createActions([
   "loadTrendingNewsItems",
   "loadNewestNewsItems",
-  "loadRandomNewsItems"
+  "loadRandomNewsItems",
+  "filterByCity",
 ]);

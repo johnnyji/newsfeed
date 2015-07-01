@@ -32,7 +32,7 @@ var App = React.createClass({
         {s.signupModal && <SignupModal />}
         {s.newPostModal && <NewPostModal />}
         <AppHeader currentUser={s.currentUser} />
-        <AppNavbar />
+        <AppCurrentCity currentCity={s.currentCity} />
         <NewsItemsList />
       </div>
     );

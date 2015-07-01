@@ -25,13 +25,19 @@ var NewsItemStore = Reflux.createStore({
       this.triggerState();
     }.bind(this));
   },
-  onLoadNewestNewsItems: function() {
-    
-    var sortedItems = this.state.news_items.sort(function(a, b) {
-      return b.created_at - a.created_at;
+  onFilterByCity: function(data) {
+    // data: { "city": "typing city name..." }
+    $.ajax({
+      url: "/filter_city",
+      method: "POST",
+      data: data,
+      success: function(data) {
+
+      }.bind(this),
+      error: function(xhr, status, error) {
+
+      }.bind(this),
     });
-  },
-  onLoadRandomNewsItems: function() {
   },
   _handleMessage: function(message) {
     this.state.componentReady = true;

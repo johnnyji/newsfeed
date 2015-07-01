@@ -1,0 +1,27 @@
+@import "clarity";
+
+.app-current-city {
+  position: relative;
+  min-width: 350px;
+  height: 300px;
+  .city-search-bar {
+    @include position-center(absolute, 50%, 50%);
+    i {
+      position: relative;
+      top: 5px;
+      font-size: 3.5rem;
+      margin-right: 1rem;
+      color: $light-text-color;
+    }
+    input[type=text] {
+      position: relative;
+      padding: 0.8rem;
+      font-size: 2.5rem;
+      border: none;
+      outline: none;
+      text-align: center;
+      background-color: transparent;
+      border-bottom: 2px solid $light-text-color;
+    }
+  }
+}

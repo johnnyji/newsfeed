@@ -21,7 +21,7 @@ var NewsItemCard = React.createClass({
     return (
       <div className="news-item-card">
 
-          <Upvoter count={newsItem.upvotes} newsItemId={newsItem.id} />
+          <Upvoter count={newsItem.upvotes} newsItemId={newsItem.id} handleClick={this._handleUpvoteClick} />
 
           <div className="info">
             <h2 className="title" onClick={this._showNewsItemModal}>{newsItem.title}</h2>

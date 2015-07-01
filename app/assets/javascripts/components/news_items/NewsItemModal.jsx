@@ -1,6 +1,14 @@
 var NewsItemModal = React.createClass({
   propTypes: {
+    currentUser: React.PropTypes.object,
     newsItem: React.PropTypes.object.isRequired,
+  },
+  _handleUpvoteClick: function() {
+    if (this.props.currentUser) {
+      // the user will upvote
+    } else {
+      AppActions.triggerMessage("Please sign in to upvote");
+    }
   },
   _exitNewsItemModal: function() {
     NewsItemActions.toggleNewsItemModal();
@@ -19,7 +27,7 @@ var NewsItemModal = React.createClass({
 
         <div className="show-news-item">
           <div className="item-header">
-            <Upvoter count={newsItem.upvotes} newsItemId={newsItem.id} />
+            <Upvoter count={newsItem.upvotes} newsItemId={newsItem.id} handleClick={this._handleUpvoteClick}/>
             <h1 className="title">{newsItem.title}</h1>
           </div>
         </div>

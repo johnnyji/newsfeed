@@ -42,4 +42,12 @@ var AppStore = Reflux.createStore({
     this.state.signupModal = !this.state.signupModal;
     this.trigger(this.state);
   },
+  onTriggerMessage: function(message) {
+    this.state.message = message;
+    this.trigger(this.state);
+  },
+  onClearMessage: function() {
+    this.state.message = null;
+    this.trigger(this.state);
+  }
 });

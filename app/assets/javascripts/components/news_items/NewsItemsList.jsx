@@ -36,7 +36,7 @@ var NewsItemsList = React.createClass({
 
     return (
       <div className="news-item-list-container">
-        {s.itemBeingViewed && <NewsItemModal newsItem={s.itemBeingViewed} />}
+        {s.itemBeingViewed && <NewsItemModal newsItem={s.itemBeingViewed} currentUser={p.currentUser}/>}
         {s.message && <h1>{s.message}</h1>}
         {news_items}
       </div>

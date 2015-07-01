@@ -3,4 +3,6 @@ var AppActions = Reflux.createActions([
   "toggleSignupModal",
   "toggleLoginModal",
   "toggleNewsItemModal",
+  "triggerMessage",
+  "clearMessage"
 ]);

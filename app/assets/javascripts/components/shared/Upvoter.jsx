@@ -2,9 +2,10 @@ var Upvoter = React.createClass({
   propTypes: {
     count: React.PropTypes.number.isRequired,
     newsItemId: React.PropTypes.number.isRequired,
+    handleClick: React.PropTypes.func.isRequired,
   },
   _handleClick: function() {
-
+    this.props.handleClick();
   },
   render: function() {
     return (

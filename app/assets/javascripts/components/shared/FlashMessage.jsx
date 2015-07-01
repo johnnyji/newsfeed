@@ -6,6 +6,8 @@ var FlashMessage = React.createClass({
     AppActions.clearMessage();
   },
   render: function() {
+    var p = this.props;
+    
     return (
       <div className="flash-message">
         {p.message}

@@ -1,6 +1,13 @@
+@import "clarity";
+
 .flash-message {
-  background-color: whitesmoke;
+  @include position-x(fixed, 50%);
+  top: 0;
+  height: 70px;
+  z-index: 1000;
+  background-color: red;
   .exit-message {
+    @include cursor-pointer;
     width: 30px;
     height: 30px;
   }

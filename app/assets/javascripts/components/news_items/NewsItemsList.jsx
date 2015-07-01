@@ -1,5 +1,8 @@
 var NewsItemsList = React.createClass({
   mixins: [Reflux.ListenerMixin],
+  propTypes: {
+    currentUser: React.PropTypes.object
+  },
   getInitialState: function() {
     var state = NewsItemStore.getInitialState();
     return {
@@ -24,8 +27,9 @@ var NewsItemsList = React.createClass({
   render: function() {
     var s = this.state;
     var p = this.props;
+    
     var news_items = _.map(s.news_items, function(newsItem, i) {
-      return <NewsItemCard key={i} newsItem={newsItem} />
+      return <NewsItemCard key={i} newsItem={newsItem} currentUser={p.currentUser} />
     });
 
     if (!s.componentReady) { return <h1>Loading...</h1> }

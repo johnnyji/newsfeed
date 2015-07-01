@@ -15,7 +15,7 @@ var App = React.createClass({
     this.listenTo(AppStore, this._updateState);
   },
   _updateState: function(data) {
-    this.setState({ 
+    this.setState({
       currentUser: data.currentUser,
       currentCity: data.currentCity,
       loginModal: data.loginModal,
@@ -36,7 +36,7 @@ var App = React.createClass({
         {s.message && <FlashMessage message={s.message}/>}
         <AppHeader currentUser={s.currentUser} />
         <AppCurrentCity currentCity={s.currentCity} />
-        <NewsItemsList />
+        <NewsItemsList currentUser={s.currentUser} />
       </div>
     );
   }

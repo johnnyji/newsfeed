@@ -41,5 +41,10 @@ var AppStore = Reflux.createStore({
   onToggleSignupModal: function() {
     this.state.signupModal = !this.state.signupModal;
     this.trigger(this.state);
-  }
+  },
+  onToggleNewsItemModal: function(newsItemId) {
+    var newsItem = this._loadSingleNewsItem();
+    this.state.signupModal = !this.state.signupModal;
+    this.trigger(this.state);
+  },
 });

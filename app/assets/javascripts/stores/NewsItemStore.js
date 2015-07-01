@@ -16,7 +16,7 @@ var NewsItemStore = Reflux.createStore({
     this._clearMessage();
     $.getJSON("/news_items", function(data) {
       if (data.message) { return this._handleMessage(data.message); }
-      this._sortItemsByPopularity(data.news_items);
+      this._sortItemsByUpvotes(data.news_items);
     }.bind(this));
   },
   onFilterByCity: function(data) {
@@ -35,9 +35,9 @@ var NewsItemStore = Reflux.createStore({
       }.bind(this),
     });
   },
-  _sortItemsByPopularity: function(newsItems) {
-    var sortedItems = newsItems.sort(function(a, b) { return a.stars - b.stars; });
-    this.state.news_items = sortedItems;
+  _sortItemsByUpvotes: function(newsItems) {
+    var upvotesDesc = newsItems.sort(function(a, b) { return b.upvotes - a.upvotes; });
+    this.state.news_items = upvotesDesc;
     this.state.componentReady = true;
     this.trigger(this.state);
   },

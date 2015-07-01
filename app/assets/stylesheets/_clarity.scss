@@ -1,0 +1,165 @@
+@import "bourbon";
+@import "neat";
+
+// VIEWPORT MIXINS
+
+@mixin mobile-viewport {
+  @media (max-width: 550px) {
+    @content;
+  }
+}
+
+@mixin medium-viewport {
+  @media (min-width: 551px) and (max-width: 1000px) {
+    @content;
+  }
+}
+
+//  MIXINS
+
+@mixin position-center($position, $top, $left) {
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: $position;
+  top: $top;
+  left: $left;
+}
+
+@mixin position-x($position, $left) {
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  position: $position;
+  left: $left;
+}
+
+@mixin position-y($position, $top) {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: $position;
+  top: $top;
+}
+
+@mixin scale($width, $height) {
+  -webkit-transform: scale($width, $height);
+  -moz-transform: scale($width, $height);
+  -o-transform: scale($width, $height);
+  transform: scale($width, $height);
+}
+
+@mixin transition($time) {
+  -webkit-transition: all $time ease;
+  -moz-transition: all $time ease;
+  -o-transition: all $time ease;
+  transition: all $time ease;
+}
+
+@mixin linear-gradient-top-bottom($color1, $color2) {
+  background: -webkit-linear-gradient($color1, $color2); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($color1, $color2); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($color1, $color2); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($color1, $color2); /* Standard syntax (must be last) */
+}
+
+@mixin input-focus-highlight($color) {
+  &:focus {
+    outline: none;
+    border: 1px solid $color;
+    box-shadow: 0 0 5px $color;
+  }
+}
+
+@mixin button-style($color, $hover) {
+  @include transition(0.3s);
+  font-weight: 600;
+  border-style: none;
+  padding: 0.3em 1em;
+  color: $white;
+  background-color: $color;
+  box-shadow: 0 8px 0 $hover;
+  margin: 1em;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 0 $color;
+    background-color: $hover;
+  }
+  i {
+    color: $white;
+  }
+}
+
+
+@mixin brightness($percentage, $blur) {
+  -webkit-filter: brightness($percentage) blur($blur);
+  -moz-filter: brightness($percentage) blur($blur);
+  -ms-filter: brightness($percentage) blur($blur);
+  -o-filter: brightness($percentage) blur($blur);
+  filter: brightness($percentage) blur($blur);
+}
+
+@mixin placeholder($color) {
+  ::-webkit-input-placeholder { /* WebKit browsers */
+    color: $color;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     color: $color;
+     opacity:  1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+     color: $color;
+     opacity:  1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+     color: $color;
+  }
+}
+
+@mixin input-field-style($color1, $color2) {
+  outline: none;
+  padding: 0.3em;
+  border: 2px solid $color1;
+  &:focus {
+    outline: none;
+    border: 2px solid $color2;
+    box-shadow: 0 0 5px $color1;
+  }
+}
+
+@mixin cursor-pointer {
+  &:hover { cursor: pointer; }
+}
+
+// APP WIDE
+
+body {
+  @include medium-viewport { font-size: 0.95em; }
+  @include mobile-viewport { font-size: 0.87em; }
+  position: relative;
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  font-family: inherit;
+  a {
+    text-decoration: none;
+    &:hover, &:focus, &:active, &:visited {
+      text-decoration: none;
+    }
+  }
+}

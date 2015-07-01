@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701172555) do
+ActiveRecord::Schema.define(version: 20150701191433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20150701172555) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "news_items", force: :cascade do |t|
     t.string   "title"
     t.string   "link"
@@ -35,6 +46,17 @@ ActiveRecord::Schema.define(version: 20150701172555) do
   end
 
   add_index "news_items", ["user_id"], name: "index_news_items_on_user_id", using: :btree
+
+  create_table "replies", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "replyable_id"
+    t.string   "replyable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "replies", ["user_id"], name: "index_replies_on_user_id", using: :btree
 
   create_table "stars", force: :cascade do |t|
     t.integer  "news_item_id"

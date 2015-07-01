@@ -9,7 +9,8 @@
     @include outer-container;
     padding: 1rem;
     margin: 0.5rem;
-    .upvote-count {
+
+    .upvoter {
       @include span-columns(2);
       position: relative;
       text-align: center;
@@ -36,9 +37,14 @@
       @include span-columns(8);
       position: relative;
       .title {
+        @include transition(0.3s);
         position: relative;
         font-weight: 300;
         font-size: 1.7rem;
+        &:hover {
+          cursor: pointer;
+          color: $secondary-brand-color;
+        }
       }
       .description {
         font-size: 1.1rem;
@@ -47,6 +53,7 @@
       .additional-info {
         margin-top: 1rem;
         color: $light-text-color;
+        font-size: 0.9rem;
         .posted-date {
           @include transition(0.3s);
           position: relative;

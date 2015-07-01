@@ -2,6 +2,7 @@ var NewsItemState = {
   news_items: null,
   message: null,
   componentReady: false,
+  itemBeingViewed: null,
 }
 
 var NewsItemStore = Reflux.createStore({
@@ -34,6 +35,14 @@ var NewsItemStore = Reflux.createStore({
 
       }.bind(this),
     });
+  },
+  onToggleNewsItemModal: function(newsItemId) {
+    if (newsItemId) {
+      this.state.itemBeingViewed = _.find(this.state.news_items, { "id": newsItemId });
+    } else {
+      this.state.itemBeingViewed = null
+    }
+    this.trigger(this.state);
   },
   _sortItemsByUpvotes: function(newsItems) {
     var upvotesDesc = newsItems.sort(function(a, b) { return b.upvotes - a.upvotes; });

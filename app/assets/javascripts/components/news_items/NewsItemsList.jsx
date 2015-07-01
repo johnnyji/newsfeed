@@ -8,12 +8,11 @@ var NewsItemsList = React.createClass({
     return {
       news_items: state.news_items,
       message: state.message,
-      componentReady: state.componentReady
+      componentReady: state.componentReady,
+      itemBeingViewed: state.itemBeingViewed,
     };
   },
   componentDidMount: function() {
-    var p = this.props;
-
     this.listenTo(NewsItemStore, this._updateState);
     NewsItemActions.loadNewsItems();
   },
@@ -22,12 +21,13 @@ var NewsItemsList = React.createClass({
       news_items: data.news_items,
       message: data.message,
       componentReady: data.componentReady,
+      itemBeingViewed: data.itemBeingViewed,
     });
   },
   render: function() {
     var s = this.state;
     var p = this.props;
-    
+
     var news_items = _.map(s.news_items, function(newsItem, i) {
       return <NewsItemCard key={i} newsItem={newsItem} currentUser={p.currentUser} />
     });
@@ -36,6 +36,7 @@ var NewsItemsList = React.createClass({
 
     return (
       <div className="news-item-list-container">
+        {s.itemBeingViewed && <NewsItemModal newsItem={s.itemBeingViewed} />}
         {s.message && <h1>{s.message}</h1>}
         {news_items}
       </div>

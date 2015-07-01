@@ -24,7 +24,6 @@ var NewsItemsList = React.createClass({
   render: function() {
     var s = this.state;
     var p = this.props;
-
     var news_items = _.map(s.news_items, function(newsItem, i) {
       return <NewsItemCard key={i} newsItem={newsItem} />
     });
@@ -32,7 +31,7 @@ var NewsItemsList = React.createClass({
     if (!s.componentReady) { return <h1>Loading...</h1> }
 
     return (
-      <div className="news-items-list-container">
+      <div className="news-item-list-container">
         {s.message && <h1>{s.message}</h1>}
         {news_items}
       </div>

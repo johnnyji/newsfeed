@@ -12,17 +12,11 @@ var NewsItemStore = Reflux.createStore({
   getInitialState: function() {
     return this.state;
   },
-  onLoadTrendingNewsItems: function() {
+  onLoadNewsItems: function() {
     this._clearMessage();
     $.getJSON("/news_items", function(data) {
       if (data.message) { return this._handleMessage(data.message); }
-
-      var sortedItems = data.news_items.sort(function(a, b) {
-        return a.stars - b.stars;
-      });
-
-      this.state.news_items = sortedItems;
-      this.triggerState();
+      this._sortItemsByPopularity(data.news_items);
     }.bind(this));
   },
   onFilterByCity: function(data) {
@@ -32,12 +26,20 @@ var NewsItemStore = Reflux.createStore({
       method: "POST",
       data: data,
       success: function(data) {
-
+        if (data.message) { this._handleMessage(); }
+        this.state.news_items = data.news_items;
+        this.trigger(this.state);
       }.bind(this),
       error: function(xhr, status, error) {
 
       }.bind(this),
     });
+  },
+  _sortItemsByPopularity: function(newsItems) {
+    var sortedItems = newsItems.sort(function(a, b) { return a.stars - b.stars; });
+    this.state.news_items = sortedItems;
+    this.state.componentReady = true;
+    this.trigger(this.state);
   },
   _handleMessage: function(message) {
     this.state.componentReady = true;
@@ -47,7 +49,4 @@ var NewsItemStore = Reflux.createStore({
   _clearMessage: function() {
     this.state.message = null;
   },
-  _triggerState: function() {
-    this.trigger(this.state);
-  }
 });

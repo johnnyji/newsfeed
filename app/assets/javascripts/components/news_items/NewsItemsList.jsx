@@ -1,10 +1,5 @@
 var NewsItemsList = React.createClass({
   mixins: [Reflux.ListenerMixin],
-  propTypes: {
-    trending: React.PropTypes.bool,
-    newest: React.PropTypes.bool,
-    random: React.PropTypes.bool,
-  },
   getInitialState: function() {
     var state = NewsItemStore.getInitialState();
     return {
@@ -17,17 +12,7 @@ var NewsItemsList = React.createClass({
     var p = this.props;
 
     this.listenTo(NewsItemStore, this._updateState);
-    this._filterNewsItems();
-  },
-  componentDidUpdate: function(prevProps, prevState) {
-    if (prevProps !== this.props) {
-      this._filterNewsItems();
-    }
-  },
-  _filterNewsItems: function() {
-    if (this.props.trending) { NewsItemActions.loadTrendingNewsItems(); }
-    if (this.props.newest) { NewsItemActions.loadNewestNewsItems(); }
-    if (this.props.random) { NewsItemActions.loadRandomNewsItems(); }
+    NewsItemActions.loadNewsItems();
   },
   _updateState: function(data) {
     this.setState({
@@ -44,7 +29,7 @@ var NewsItemsList = React.createClass({
       return <NewsItemCard key={i} newsItem={newsItem} />
     });
 
-    if (!s.componentReady) { return <Spinner /> }
+    if (!s.componentReady) { return <h1>Loading...</h1> }
 
     return (
       <div className="news-items-list-container">

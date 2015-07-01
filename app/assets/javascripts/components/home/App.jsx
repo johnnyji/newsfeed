@@ -8,6 +8,7 @@ var App = React.createClass({
       loginModal: state.loginModal,
       signupModal: state.signupModal,
       newPostModal: state.newPostModal,
+      message: state.message,
     };
   },
   componentDidMount: function() {
@@ -20,6 +21,7 @@ var App = React.createClass({
       loginModal: data.loginModal,
       signupModal: data.signupModal,
       newPostModal: data.newPostModal,
+      message: data.message,
     });
   },
   render: function() {
@@ -31,6 +33,7 @@ var App = React.createClass({
         {s.loginModal && <LoginModal />}
         {s.signupModal && <SignupModal />}
         {s.newPostModal && <NewPostModal />}
+        {s.message && <FlashMessage message={s.message}/>}
         <AppHeader currentUser={s.currentUser} />
         <AppCurrentCity currentCity={s.currentCity} />
         <NewsItemsList />

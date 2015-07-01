@@ -4,6 +4,7 @@ var AppState =  {
   loginModal: false,
   signupModal: false,
   newPostModal: false,
+  message: null,
 }
 
 var AppStore = Reflux.createStore({

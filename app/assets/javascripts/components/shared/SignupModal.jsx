@@ -3,7 +3,8 @@ var SignupModal = React.createClass({
     return {
       user: {
         first_name: "new",
-        last_name: "user"
+        last_name: "user",
+        city: null,
       },
       account: {
         email: null,
@@ -51,6 +52,11 @@ var SignupModal = React.createClass({
             placeholder="Last name here" 
             type="text" 
             name="last_name" 
+            onChange={this._handleUserInfo}></input>
+          <input 
+            placeholder="Current city (i.e. Vancouver)" 
+            type="text" 
+            name="city" 
             onChange={this._handleUserInfo}></input>
           <input 
             placeholder="youremail@domain.com" 

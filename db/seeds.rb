@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+(1..100).each do |num|
+  NewsItem.create!(title: "title#{num}", link: "link#{num}", description: "This is just some random description about the news item blah blah")
+end

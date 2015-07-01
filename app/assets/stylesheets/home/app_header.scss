@@ -1,0 +1,27 @@
+@import "clarity";
+
+.app-header {
+  position: relative;
+  padding: 1rem;
+  height: 75px;
+  color: #FFF;
+  background-color: $primary-brand-color;
+  .header-left {
+    float: left;
+    .logo {
+      margin: 0 0 0 0.8rem;
+      font-weight: 400; 
+    }
+  }
+  .header-right {
+    float: right;
+    margin-right: 1rem;
+    button {
+      @include lite-button-style;
+      margin-left: 1rem;
+      font-size: 1.16rem;
+      padding: 0.3rem 1rem;
+      font-weight: 300;
+    }
+  }
+}

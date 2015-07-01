@@ -5,7 +5,10 @@ var NewPostModal = React.createClass({
   render: function() {
     return (
       <div className="full-page-modal">
-        <i className="fa fa-times" onClick={this._toggleNewPostModal}></i>
+        <img 
+          className="exit-modal"
+          src="https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png"
+          onClick={this._toggleNewPostModal}></img>
         
       </div>
     );

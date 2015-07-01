@@ -5,17 +5,4 @@
   @include fill-parent;
   height: 100%;
   background-color: red;
-  .app-header {
-    position: relative;
-    height: 75px;
-    background-color: yellow;
-    .header-left {
-      float: left;
-      margin: 1rem 0 0 1rem;
-    }
-    .header-right {
-      float: right;
-      margin: 1rem 1rem 0 0;
-    }
-  }
 }

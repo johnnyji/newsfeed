@@ -35,16 +35,40 @@ var SignupModal = React.createClass({
 
     return (
       <div className="full-page-modal">
-        <i className="fa fa-times" onClick={this._toggleSignupModal}></i>
-        Welcome {s.first_name && s.first_name}
+        <img 
+          className="exit-modal"
+          src="https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png"
+          onClick={this._toggleSignupModal}></img>
 
-        <form onSubmit={this._handleSubmit}>
-          <input type="text" name="first_name" onChange={this._handleUserInfo}></input>
-          <input type="text" name="last_name" onChange={this._handleUserInfo}></input>
-          <input type="email" name="email" onChange={this._handleAccountInfo}></input>
-          <input type="password" name="password" onChange={this._handleAccountInfo}></input>
-          <input type="password" name="password_confirmation" onChange={this._handleAccountInfo}></input>
-          <input type="submit">Ready to go!</input>
+        <form className="signup-form" onSubmit={this._handleSubmit}>
+          <h1>Welcome to <em>thefeed!</em></h1>
+          <input 
+            placeholder="First name here" 
+            type="text" 
+            name="first_name" 
+            onChange={this._handleUserInfo}></input>
+          <input 
+            placeholder="Last name here" 
+            type="text" 
+            name="last_name" 
+            onChange={this._handleUserInfo}></input>
+          <input 
+            placeholder="youremail@domain.com" 
+            type="email" 
+            name="email" 
+            onChange={this._handleAccountInfo}></input>
+          <input 
+            placeholder="Your password" 
+            type="password" 
+            name="password" 
+            onChange={this._handleAccountInfo}></input>
+          <input 
+            placeholder="Confirm password" 
+            type="password" 
+            name="password_confirmation" 
+            onChange={this._handleAccountInfo}></input>
+
+          <input type="submit" defaultValue="Ready!"></input>
         </form>
 
       </div>

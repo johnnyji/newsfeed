@@ -1,6 +1,14 @@
 @import "bourbon";
 @import "neat";
 
+// COLORS
+
+$text-color: #333;
+$light-text-color: #888;
+
+$primary-brand-color: #674172;
+$modal-background-color: rgba(255, 255, 255, 0.95);
+
 // VIEWPORT MIXINS
 
 @mixin mobile-viewport {
@@ -74,25 +82,31 @@
   }
 }
 
-@mixin button-style($color, $hover) {
-  @include transition(0.3s);
-  font-weight: 600;
+@mixin button-style {
   border-style: none;
-  padding: 0.3em 1em;
-  color: $white;
-  background-color: $color;
-  box-shadow: 0 8px 0 $hover;
-  margin: 1em;
-  &:focus {
-    outline: none;
-  }
+  border: 2px solid $light-text-color !important;
+  border-radius: 30px;
+  background-color: transparent;
+  color: $light-text-color;
+  outline: none;
   &:hover {
     cursor: pointer;
-    box-shadow: 0 8px 0 $color;
-    background-color: $hover;
+    border: 2px solid $text-color !important;
+    color: $text-color;
   }
-  i {
-    color: $white;
+}
+
+@mixin lite-button-style {
+  border-style: none;
+  border: 2px solid #FFF !important;
+  border-radius: 30px;
+  background-color: transparent;
+  color: #FFF;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+    border: 2px solid #FFF !important;
+    color: #FFF;
   }
 }
 
@@ -148,7 +162,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 300;
   overflow-x: hidden;
 }

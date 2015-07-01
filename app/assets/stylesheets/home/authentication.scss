@@ -1,0 +1,35 @@
+@import "clarity";
+
+.signup-form, .login-form {
+  @include position-center(absolute, 40%, 50%);
+  background-color: transparent;
+  h1 {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  input[type=text], input[type=email], input[type=password] {
+    font-size: 1.2rem;
+    position: relative;
+    display: block;
+    padding: 0.4rem;
+    width: 350px;
+    height: 45px;
+    border: none;
+    outline: none;
+    text-align: center;
+    background-color: transparent;
+    margin-bottom: 1rem;
+    color: $text-color;
+    &:focus {
+      border-bottom: 2px solid $text-color;
+    }
+  }
+  input[type=submit] {
+    @include button-style;
+    @include position-x(relative, 50%);
+    margin-top: 2.5rem;
+    text-align: center;
+    padding: 0.7rem 2rem;
+    font-size: 1.4rem;
+  }
+}

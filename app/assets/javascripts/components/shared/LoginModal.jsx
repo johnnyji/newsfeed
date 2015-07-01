@@ -14,19 +14,26 @@ var LoginModal = React.createClass({
     e.preventDefault();
     AuthenticationActions.login(this.state);
   },
+  _toggleLoginModal: function() {
+    AppActions.toggleLoginModal();
+  },
   render: function() {
     var p = this.props;
     var s = this.state;
     return (
       <div className="full-page-modal">
-        <i className="fa fa-times" onClick={AppActions.toggleLoginModal}></i>
+        <img 
+          className="exit-modal"
+          src="https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png"
+          onClick={this._toggleLoginModal}></img>
 
-        <form onSubmit={this._handleSubmit}>
+        <form className="login-form" onSubmit={this._handleSubmit}>
+          <h1>Welcome back!</h1>
           <input type="email" name="email" onChange={this._handleStateChange}></input>
           <input type="password" name="password" onChange={this._handleStateChange}></input>
-          <input type="submit">Ready to go!</input>
+          <input type="submit" defaultValue="Login"></input>
         </form>
-        
+
       </div>
     );
   }

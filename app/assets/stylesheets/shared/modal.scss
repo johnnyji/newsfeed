@@ -5,8 +5,16 @@
   z-index: 10;
   width: 100vw;
   height: 100vh;
-  background-color: blue;
-  form {
-    background-color: green;
+  background-color: $modal-background-color;
+  .exit-modal {
+    @include transition(0.3s);
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    height: 70px;
+    &:hover {
+      height: 77px;
+      cursor: pointer;
+    }
   }
 }

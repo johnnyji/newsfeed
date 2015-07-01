@@ -4,24 +4,30 @@
   position: relative;
   min-width: 350px;
   height: 300px;
-  .city-search-bar {
+  .city-container {
     @include position-center(absolute, 50%, 50%);
+    .greeting {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-bottom: 0;
+      font-weight: 400;
+    }
     i {
       position: relative;
+      display: inline-block;
       top: 5px;
       font-size: 3.5rem;
       margin-right: 1rem;
       color: $light-text-color;
     }
-    input[type=text] {
+    .location-name {
       position: relative;
+      display: inline-block;
       padding: 0.8rem;
       font-size: 2.5rem;
-      border: none;
-      outline: none;
+      font-weight: 300;
       text-align: center;
       background-color: transparent;
-      border-bottom: 2px solid $light-text-color;
     }
   }
 }

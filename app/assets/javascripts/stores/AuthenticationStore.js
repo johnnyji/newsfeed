@@ -26,6 +26,6 @@ var AuthenticationStore = Reflux.createStore({
       error: function(xhr, status, error) {
       // set some error
       }.bind(this)
-    }); 
+    });
   },
 });

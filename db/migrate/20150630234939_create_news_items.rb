@@ -3,7 +3,10 @@ class CreateNewsItems < ActiveRecord::Migration
     create_table :news_items do |t|
       t.string :title
       t.string :link
+      t.string :location
       t.text :description
+      t.float :latitude
+      t.float :longitude
       t.references :user, index: true
 
       t.timestamps null: false

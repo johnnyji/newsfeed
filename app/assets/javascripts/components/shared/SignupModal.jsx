@@ -4,7 +4,6 @@ var SignupModal = React.createClass({
       user: {
         first_name: "new",
         last_name: "user",
-        city: null,
       },
       account: {
         email: null,
@@ -18,7 +17,7 @@ var SignupModal = React.createClass({
     newState[e.target.name] = e.target.value;
     this.setState(newState);
   },
-  _handleAccountInfo: function() {
+  _handleAccountInfo: function(e) {
     var newState = this.state.account;
     newState[e.target.name] = e.target.value;
     this.setState(newState);
@@ -36,42 +35,37 @@ var SignupModal = React.createClass({
 
     return (
       <div className="full-page-modal">
-        <img 
+        <img
           className="exit-modal"
           src="https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png"
           onClick={this._toggleSignupModal}></img>
 
         <form className="signup-form" onSubmit={this._handleSubmit}>
           <h1>Welcome to <em>thefeed!</em></h1>
-          <input 
-            placeholder="First name here" 
-            type="text" 
-            name="first_name" 
+          <input
+            placeholder="First name here"
+            type="text"
+            name="first_name"
             onChange={this._handleUserInfo}></input>
-          <input 
-            placeholder="Last name here" 
-            type="text" 
-            name="last_name" 
+          <input
+            placeholder="Last name here"
+            type="text"
+            name="last_name"
             onChange={this._handleUserInfo}></input>
-          <input 
-            placeholder="Current city (i.e. Vancouver)" 
-            type="text" 
-            name="city" 
-            onChange={this._handleUserInfo}></input>
-          <input 
-            placeholder="youremail@domain.com" 
-            type="email" 
-            name="email" 
+          <input
+            placeholder="youremail@domain.com"
+            type="email"
+            name="email"
             onChange={this._handleAccountInfo}></input>
-          <input 
-            placeholder="Your password" 
-            type="password" 
-            name="password" 
+          <input
+            placeholder="Your password"
+            type="password"
+            name="password"
             onChange={this._handleAccountInfo}></input>
-          <input 
-            placeholder="Confirm password" 
-            type="password" 
-            name="password_confirmation" 
+          <input
+            placeholder="Confirm password"
+            type="password"
+            name="password_confirmation"
             onChange={this._handleAccountInfo}></input>
 
           <input type="submit" defaultValue="Ready!"></input>

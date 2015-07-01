@@ -1,10 +1,13 @@
 var AppState =  {
   currentUser: null,
-  currentCity: null,
+  currentLocation: null,
+  currentLat: null,
+  currentLon: null,
   loginModal: false,
   signupModal: false,
   newPostModal: false,
   message: null,
+  componentReady: false,
 }
 
 var AppStore = Reflux.createStore({
@@ -15,13 +18,28 @@ var AppStore = Reflux.createStore({
   getInitialState: function() {
     return this.state;
   },
+  onGeolocateUser: function() {
+    $.ajax({
+      url: "http://ip-api.com/json",
+      method: "GET",
+      success: function(data) {
+        this.state.currentLocation = data.city + ", " + data.regionName;
+        this.state.currentLat = data.lat;
+        this.state.currentLon = data.lon;
+        this.state.componentReady = true;
+        this.trigger(this.state);
+      }.bind(this),
+      error: function(xhr, status, error) {
+        debugger
+      }.bind(this)
+    });
+  },
   loadCurrentUser: function() {
     $.ajax({
       url: "/current_user",
       method: "GET",
       success: function(data) {
         this.state.currentUser = data.user;
-        this.state.currentCity = data.user.city;
         this.trigger(this.state);
       }.bind(this),
       error: function(xhr, status, error) {

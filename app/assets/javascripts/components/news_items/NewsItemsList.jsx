@@ -1,6 +1,8 @@
 var NewsItemsList = React.createClass({
   mixins: [Reflux.ListenerMixin],
   propTypes: {
+    currentLat: React.PropTypes.number,
+    currentLon: React.PropTypes.number,
     currentUser: React.PropTypes.object
   },
   getInitialState: function() {
@@ -14,7 +16,7 @@ var NewsItemsList = React.createClass({
   },
   componentDidMount: function() {
     this.listenTo(NewsItemStore, this._updateState);
-    NewsItemActions.loadNewsItems();
+    NewsItemActions.loadNewsItems(this.props.currentLat, this.props.currentLon);
   },
   _updateState: function(data) {
     this.setState({

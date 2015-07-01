@@ -7,7 +7,7 @@ var NewsItemModal = React.createClass({
     if (this.props.currentUser) {
       // the user will upvote
     } else {
-      AppActions.triggerMessage("Please sign in to upvote");
+      AppActions.triggerMessage("Please sign in to vote");
     }
   },
   _exitNewsItemModal: function() {

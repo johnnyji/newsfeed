@@ -5,10 +5,20 @@
   top: 0;
   height: 70px;
   z-index: 1000;
-  background-color: red;
+  font-size: 1.15rem;
+  padding: 1rem 1.8rem;
+  background-color: lighten(#DCC6E0, 5%);
+  box-shadow: 0 0 5px darken(#DCC6E0, 30%);
+  .message {
+    position: relative;
+    display: inline-block;
+    margin: 0 1rem 0 0;
+  }
   .exit-message {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
     @include cursor-pointer;
     width: 30px;
-    height: 30px;
   }
 }

@@ -1,5 +1,12 @@
 source 'https://rubygems.org'
 
+group :development, :test do
+  gem 'dotenv-rails', '~> 2.0.1'
+  gem 'pry', '~> 0.10.1'
+  gem 'pry-rails', '~> 0.3.4'
+  gem 'pry-nav', '~> 0.2.4'
+  gem 'spring'
+end
 
 gem 'rails', '4.2.0'
 gem 'pg'
@@ -12,15 +19,7 @@ gem 'lodash-rails', '~> 3.7.0'
 gem 'react-rails', '~> 1.0.0'
 gem 'jbuilder', '~> 2.0'
 
-gem 'bcrypt-ruby', '~> 3.1.5'
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-twitter', '~> 1.2.0'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
-
-
-group :development, :test do
-  gem 'pry', '~> 0.10.1'
-  gem 'pry-rails', '~> 0.3.4'
-  gem 'pry-nav', '~> 0.2.4'
-  gem 'spring'
-end
-

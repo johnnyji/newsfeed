@@ -1,13 +1,17 @@
 class User < ActiveRecord::Base
-  has_one :account, as: :accountable, dependent: :destroy
   has_many :news_items, dependent: :destroy
   has_many :comments, through: :news_items
   has_many :replies, through: :comments
 
-  def create_with_account(user_params, account_params) #creates the user along with the account
-    binding.pry
-    self.save!(user_params)
-    self.account.save!(account_params)
-    self
+  def self.find_or_create_from_auth_hash(auth_hash)
+    user = self.where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_create
+    user.update(
+      name: auth_hash.info.name,
+      profile_picture: auth_hash.info.image,
+      token: auth_hash.credentials.token,
+      secret: auth_hash.credentials.secret
+    )
+    user
   end
+
 end

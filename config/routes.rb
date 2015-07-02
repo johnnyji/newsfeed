@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-  
+
   root 'home#index'
 
   controller :session do
-    post "/login" => :create
+    get "/auth/twitter/callback" => :create
     delete "/logout" => :destroy
   end
-  
+
   controller :users do
-    post "/signup" => :create
     get "/current_user" => :show
     delete "/delete_user" => :destroy
   end

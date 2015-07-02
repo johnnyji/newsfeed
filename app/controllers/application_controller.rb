@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    redirect_to root_path, alert: "You must be logged in first!" unless current_user
+    unless current_user
+      render json: nil, status: 204
+    end
   end
-  
+
 end

@@ -7,8 +7,6 @@ var App = React.createClass({
       currentLocation: state.currentLocation,
       currentLat: state.currentLat,
       currentLon: state.currentLon,
-      loginModal: state.loginModal,
-      signupModal: state.signupModal,
       newPostModal: state.newPostModal,
       message: state.message,
       componentReady: state.componentReady,
@@ -16,6 +14,7 @@ var App = React.createClass({
   },
   componentDidMount: function() {
     this.listenTo(AppStore, this._updateState);
+    AppActions.loadCurrentUser();
     AppActions.geolocateUser();
   },
   _updateState: function(data) {
@@ -24,8 +23,6 @@ var App = React.createClass({
       currentLocation: data.currentLocation,
       currentLat: data.currentLat,
       currentLon: data.currentLon,
-      loginModal: data.loginModal,
-      signupModal: data.signupModal,
       newPostModal: data.newPostModal,
       message: data.message,
       componentReady: data.componentReady,
@@ -38,9 +35,6 @@ var App = React.createClass({
     if (!s.componentReady) { return <FullPageSpinner /> }
     return (
       <div className="app-container">
-        {s.loginModal && <LoginModal />}
-        {s.signupModal && <SignupModal />}
-        {s.newPostModal && <NewPostModal />}
         {s.message && <FlashMessage message={s.message}/>}
         <AppHeader currentUser={s.currentUser} />
         <AppCurrentCity currentLocation={s.currentLocation} />

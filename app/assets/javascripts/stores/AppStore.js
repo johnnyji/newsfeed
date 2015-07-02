@@ -3,8 +3,6 @@ var AppState =  {
   currentLocation: null,
   currentLat: null,
   currentLon: null,
-  loginModal: false,
-  signupModal: false,
   newPostModal: false,
   message: null,
   componentReady: false,
@@ -34,30 +32,15 @@ var AppStore = Reflux.createStore({
       }.bind(this)
     });
   },
-  loadCurrentUser: function() {
-    $.ajax({
-      url: "/current_user",
-      method: "GET",
-      success: function(data) {
-        this.state.currentUser = data.user;
-        this.trigger(this.state);
-      }.bind(this),
-      error: function(xhr, status, error) {
-        this.state.currentUser = null;
-        this.trigger(this.state);
-      }.bind(this)
-    });
+  onLoadCurrentUser: function() {
+    $.getJSON("/current_user").done(function(data, status, xhr) {
+      if (xhr.status === 204) { return this.trigger(this.state); }
+      this.state.currentUser = data.user;
+      this.trigger(this.state);
+    }.bind(this));
   },
   onToggleNewPostModal: function() {
     this.state.newPostModal = !this.state.newPostModal;
-    this.trigger(this.state);
-  },
-  onToggleLoginModal: function() {
-    this.state.loginModal = !this.state.loginModal;
-    this.trigger(this.state);
-  },
-  onToggleSignupModal: function() {
-    this.state.signupModal = !this.state.signupModal;
     this.trigger(this.state);
   },
   onTriggerMessage: function(message) {

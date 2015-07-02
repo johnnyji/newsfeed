@@ -10,12 +10,17 @@
     float: left;
     .logo {
       margin: 0 0 0 0.8rem;
-      font-weight: 400; 
+      font-weight: 400;
     }
   }
   .header-right {
     float: right;
     margin-right: 1rem;
+    vertical-align: top;
+    h3 {
+      position: relative;
+      display: inline-block;
+    }
     button {
       @include lite-button-style;
       margin-left: 1rem;

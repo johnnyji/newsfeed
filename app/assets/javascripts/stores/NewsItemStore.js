@@ -53,7 +53,7 @@ var NewsItemStore = Reflux.createStore({
   _handleMessage: function(message) {
     this.state.componentReady = true;
     this.state.message = message;
-    this._triggerState();
+    this.trigger(this.state);
   },
   _clearMessage: function() {
     this.state.message = null;

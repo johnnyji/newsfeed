@@ -2,11 +2,8 @@ var AppHeader = React.createClass({
   propTypes: {
     currentUser: React.PropTypes.object,
   },
-  _toggleLoginModal: function() {
-    AppActions.toggleLoginModal();
-  },
-  _toggleSignupModal: function() {
-    AppActions.toggleSignupModal();
+  _handleAuthenticate: function() {
+    AuthenticationActions.authenticateWithTwitter();
   },
   _toggleNewPostModal: function() {
     AppActions.toggleNewPostModal();
@@ -23,15 +20,15 @@ var AppHeader = React.createClass({
 
         {p.currentUser &&
           <div className="header-right">
-            <h3>{p.currentUser.first_name + " " + p.currentUser.last_name}</h3>
-            <button onClick={this._toggleNewPostModal}>Sign Up</button>
+            <h3>{p.currentUser.name}</h3>
+            <button onClick={this._toggleNewPostModal}>New Post</button>
           </div>
         }
 
         {!p.currentUser &&
           <div className="header-right">
-            <button onClick={this._toggleLoginModal}>Login</button>
-            <button onClick={this._toggleSignupModal}>Sign Up</button>
+            <button onClick={this._handleAuthenticate}>Login</button>
+            <button onClick={this._handleAuthenticate}>New Post</button>
           </div>
         }
       </div>

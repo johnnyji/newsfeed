@@ -12,14 +12,14 @@ var AppCurrentCity = React.createClass({
           morning: ["Morning " + firstName + "!"],
           evening: ["Evening, the perfect time of day."],
           afternoon: ["Good afternoon " + firstName + "!"],
-          lunchtime: ["Hey " + firstName + ", hope you're having a good lunch!"],
+          lunchtime: ["Hey " + firstName + ", having a good lunch?"],
         },
       };
     } else {
       return {
         greetings: {
           lateNight: ["You're a real night owl!"],
-          morning: ["Wow, you're up early!"],
+          morning: ["Good morning!"],
           evening: ["Evening, the perfect time of day."],
           afternoon: ["Good afternoon!"],
           lunchtime: ["Hope you're having a good lunch!"],
@@ -32,7 +32,7 @@ var AppCurrentCity = React.createClass({
 
     if (hour > 18) { return _.sample(greetings.evening); }
     if (hour > 14) { return _.sample(greetings.afternoon); }
-    if (hour > 12) { return _.sample(greetings.lunchtime); }
+    if (hour >= 12) { return _.sample(greetings.lunchtime); }
     if (hour >= 6)  { return _.sample(greetings.morning); }
     if (hour < 6) { return _.sample(greetings.lateNight); }
   },
@@ -45,8 +45,9 @@ var AppCurrentCity = React.createClass({
       <div className="app-current-city">
         <div className="city-container">
           <h3 className="greeting">{greeting} Here's whats new in...</h3>
-          <i className="fa fa-map-marker"></i>
-          <h1 className="location-name">{p.currentLocation}</h1>
+          <h1 className="location-name">
+            <i className="fa fa-map-marker"></i> {p.currentLocation}
+          </h1>
         </div>
       </div>
     );

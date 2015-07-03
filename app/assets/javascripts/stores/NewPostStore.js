@@ -59,7 +59,7 @@ var NewPostStore = Reflux.createStore({
   },
   _validateLink: function(value) {
     var linkRegex = new RegExp("^(http|https)://", "i");
-    var validLink = linkRegex.test(value);
+    var validLink = linkRegex.test(value) || (value == "");
     value.toLowerCase();
 
     if (!validLink) { return this._triggerError("link", "Links must being with either http:// or https://"); }
@@ -74,7 +74,7 @@ var NewPostStore = Reflux.createStore({
     if (!validDescription) { return this._triggerError("description", "Description must be longer than 10 characters"); }
 
     this._removeError("description");
-    this.state.news_item.link = link;
+    this.state.news_item.link = value;
     this.trigger(this.state);
   },
   _triggerError: function(field, errorMessage) {

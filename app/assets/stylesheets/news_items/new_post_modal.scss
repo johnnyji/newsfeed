@@ -9,8 +9,43 @@
     color: $light-text-color;
     margin-bottom: 3rem;
   }
+  .title-container {
+    margin: 1.5rem auto;
+    width: 60%;
+    input[type=text] { margin-bottom: 0.2rem; }
+    .title-count { color: $light-text-color; top: -3px; }
+  }
+  .link-container {
+    margin: 1.5rem auto;
+    width: 60%;
+  }
+  .description-container {
+    margin: 2rem auto;
+    width: 60%;
+  }
   input[type=text] {
     @include input-field-style;
-    text-align: left;
+    width: 100%;
+  }
+  input[type=submit] {
+    @include button-style;
+    @include position-x(relative, 50%);
+    padding: 1rem 1.7rem;
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  textarea {
+    @include input-field-style;
+    resize: none;
+    width: 100%;
+    height: 300px;
+  }
+  .input-error {
+    border-bottom: 1px solid $error-color !important;
+    background-color: $input-error-background-color !important;
+  }
+  .error-message {
+    color: $error-color;
+    margin: 0.5rem auto;
   }
 }

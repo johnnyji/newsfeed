@@ -8,6 +8,12 @@ $light-text-color: #888;
 
 $primary-brand-color: #674172;
 $secondary-brand-color: #9B59B6;
+
+$error-color: #E74C3C;
+
+$input-error-background-color: lighten(rgba(231, 76, 60, 0.2), 10%);
+$input-background-color: lighten(rgba(136, 136, 136, 0.2), 15%);
+
 $modal-background-color: rgba(255, 255, 255, 0.95);
 
 // VIEWPORT MIXINS
@@ -139,6 +145,7 @@ $modal-background-color: rgba(255, 255, 255, 0.95);
 
 @mixin input-field-style {
   font-size: 1.2rem;
+  font-weight: 300;
   position: relative;
   display: block;
   padding: 0.4rem;
@@ -146,8 +153,7 @@ $modal-background-color: rgba(255, 255, 255, 0.95);
   height: 45px;
   border: none;
   outline: none;
-  text-align: center;
-  background-color: transparent;
+  background-color: $input-background-color;
   margin-bottom: 1rem;
   color: $text-color;
   border-bottom: 1px solid $light-text-color;

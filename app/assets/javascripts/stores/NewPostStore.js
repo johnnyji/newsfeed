@@ -12,7 +12,7 @@ var NewPostState = {
     title: false,
     link: false,
     description: false,
-  }
+  },
   errorMessages: {
     title: null,
     link: null,
@@ -29,6 +29,9 @@ var NewPostStore = Reflux.createStore({
   },
   getInitialState: function() {
     return this.state;
+  },
+  getMaximumTitleLength: function() {
+    return this.maximumTitleLength;
   },
   onSetLocation: function(location, lat, lon) {
     this.state.location = location;
@@ -48,23 +51,29 @@ var NewPostStore = Reflux.createStore({
     var validTitle = value.length <= this.maximumTitleLength;
     this.state.titleLengthCount = value.length;
 
-    if (!validTitle) { return this._triggerError("Title must be under 100 characters"); }
+    if (!validTitle) { return this._triggerError("title", "Title must be under 100 characters"); }
+
+    this._removeError("title");
     this.state.news_item.title = value;
     this.trigger(this.state);
   },
   _validateLink: function(value) {
     var linkRegex = new RegExp("^(http|https)://", "i");
     var validLink = linkRegex.test(value);
-
     value.toLowerCase();
-    if (!validLink) { return this._triggerError("Links must being with either http:// or https://") }
-    this.state.news_item.link = link;
+
+    if (!validLink) { return this._triggerError("link", "Links must being with either http:// or https://"); }
+
+    this._removeError("link");
+    this.state.news_item.link = value;
     this.trigger(this.state);
   },
   _validateDescription: function(value) {
     var validDescription = value.length >= this.minimumDescriptionLength;
 
-    if (!validDescription) { return this._triggerError("Description must be longer than 10 characters"); }
+    if (!validDescription) { return this._triggerError("description", "Description must be longer than 10 characters"); }
+
+    this._removeError("description");
     this.state.news_item.link = link;
     this.trigger(this.state);
   },

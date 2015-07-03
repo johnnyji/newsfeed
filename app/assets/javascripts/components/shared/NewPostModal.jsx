@@ -8,7 +8,7 @@ var NewPostModal = React.createClass({
     return {
       news_item: state.news_item,
       errors: state.errors,
-      errorMessages: state.errorMessage,
+      errorMessages: state.errorMessages,
       titleLengthCount: state.titleLengthCount,
     };
   },
@@ -30,7 +30,7 @@ var NewPostModal = React.createClass({
     this.setState({
       news_item: data.news_item,
       errors: data.errors,
-      errorMessages: data.errorMessage,
+      errorMessages: data.errorMessages,
       titleLengthCount: data.titleLengthCount,
     });
   },
@@ -55,19 +55,26 @@ var NewPostModal = React.createClass({
 
         <form onSubmit={this._handleSubmit}>
           <h1>What's happening in {s.currentLocation}?</h1>
-          <div className="title">
+
+          <div className="title_container">
+            {s.errors.title && <div>{s.errorMessages.title}</div>}
             <input
               placeholder="Awesome post title"
               type="text"
               name="title"
               onChange={this._handleInputChange}></input>
-            <small>{s.titleLengthCount} / {p.maximumTitleLength}</small>
+            <small>{s.titleLengthCount} / {NewPostStore.getMaximumTitleLength()}</small>
           </div>
-          <input
-            placeholder="Last name here"
-            type="text"
-            name="last_name"
-            onChange={this._handleUserInfo}></input>
+
+          <div className="link_container">
+            {s.errors.link && <div>{s.errorMessages.link}</div>}
+            <input
+              placeholder="Link"
+              type="text"
+              name="link"
+              onChange={this._handleInputChange}></input>
+          </div>
+
           <input
             placeholder="youremail@domain.com"
             type="email"

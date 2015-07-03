@@ -8,22 +8,27 @@ var NewPostState = {
     longitude: null,
   },
   titleLengthCount: 0,
-  errors: false,
-  errorFieldId: null,
-  errorMessage: null,
+  errors: {
+    title: false,
+    link: false,
+    description: false,
+  }
+  errorMessages: {
+    title: null,
+    link: null,
+    description: null
+  }
 }
 
 var NewPostStore = Reflux.createStore({
   init: function() {
     this.state = NewPostState;
     this.maximumTitleLength = 100;
+    this.minimumDescriptionLength = 10;
     this.listenToMany(NewPostActions);
   },
   getInitialState: function() {
     return this.state;
-  },
-  getMaximumTitleLength: function() {
-    return this.maximumTitleLength;
   },
   onSetLocation: function(location, lat, lon) {
     this.state.location = location;
@@ -40,28 +45,30 @@ var NewPostStore = Reflux.createStore({
     }
   },
   _validateTitle: function(value) {
+    var invalidTitle = value.length > this.maximumTitleLength;
     this.state.titleLengthCount = value.length;
-    if (value.length > 100) {
-      return this._triggerError("Title must be under 100 characters!")
 
-    };
+    if (invalidTitle) {
+      return this._triggerError("Title must be under 100 characters!")
+    } else {
+
+    }
     this.trigger(this.state);
   },
   _validateLink: function(value) {
 
   },
   _validateDescription: function(value) {
-
+    var invalidDescription: value.length < this.minimumDescriptionLength;
   },
-  _triggerError: function(errorMessage) {
-    if (errorMessage) { this.state.errorMessage = errorMessage; }
-    this.state.errors = true;
+  _triggerError: function(field, errorMessage) {
+    this.state.errors[field] = true;
+    this.state.errorMessages[field] = errorMessage;
     this.trigger(this.state);
   },
-  _removeError: function() {
-    this.state.error = false;
-    this.state.errorFieldId = null;
-    this.state.errorMessage = null;
+  _removeError: function(field, errorMessage) {
+    this.state.errors[field] = false;
+    this.state.errorMessages[field] = null;
     this.trigger(this.state);
   }
 });

@@ -8,14 +8,8 @@ var NewPostModal = React.createClass({
     return {
       news_item: state.news_item,
       errors: state.errors,
-      errorFieldId: state.errorFieldId,
-      errorMessage: state.errorMessage,
+      errorMessages: state.errorMessage,
       titleLengthCount: state.titleLengthCount,
-    };
-  },
-  getDefaultProps: function() {
-    return {
-      maximumTitleLength: NewPostStore.getMaximumTitleLength(),
     };
   },
   componentDidMount: function() {
@@ -36,8 +30,7 @@ var NewPostModal = React.createClass({
     this.setState({
       news_item: data.news_item,
       errors: data.errors,
-      errorFieldId: data.errorFieldId,
-      errorMessage: data.errorMessage,
+      errorMessages: data.errorMessage,
       titleLengthCount: data.titleLengthCount,
     });
   },

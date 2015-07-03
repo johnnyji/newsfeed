@@ -26,6 +26,9 @@ var NewsItemsList = React.createClass({
       itemBeingViewed: data.itemBeingViewed,
     });
   },
+  _toggleNewPostModal: function() {
+    AppActions.toggleNewPostModal();
+  },
   render: function() {
     var s = this.state;
     var p = this.props;
@@ -39,7 +42,14 @@ var NewsItemsList = React.createClass({
     return (
       <div className="news-item-list-container">
         {s.itemBeingViewed && <NewsItemModal newsItem={s.itemBeingViewed} currentUser={p.currentUser}/>}
-        {s.message && <h1>{s.message}</h1>}
+        {s.message &&
+          <div className="no-news-items">
+            <h1 className="message">{s.message}</h1>
+            <button className="new-post-button" onClick={this._toggleNewPostModal}>
+              Be the first to post!
+            </button>
+          </div>
+        }
         {news_items}
       </div>
     );

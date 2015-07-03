@@ -152,6 +152,14 @@ $modal-background-color: rgba(255, 255, 255, 0.95);
   &:hover { cursor: pointer; }
 }
 
+@mixin modal-container {
+  margin: 3rem auto 0 auto;
+  padding: 2rem;
+  max-width: 900px;
+  min-width: 375px;
+  width: 60%;
+}
+
 // APP WIDE
 
 body {

@@ -17,6 +17,15 @@ var AppStore = Reflux.createStore({
   getInitialState: function() {
     return this.state;
   },
+  getCurrentLocation: function() {
+    return this.state.currentLocation;
+  },
+  getCurrentLat: function() {
+    return this.state.currentLat;
+  },
+  getCurrentLon: function() {
+    return this.state.currentLon;
+  },
   onGeolocateUser: function() {
     $.ajax({
       url: "http://ip-api.com/json",

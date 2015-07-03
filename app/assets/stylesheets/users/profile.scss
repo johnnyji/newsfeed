@@ -1,0 +1,26 @@
+@import "clarity";
+
+.profile-modal {
+  @include modal-container;
+  position: relative;
+  .profile-header {
+    @include fill-parent;
+    position: relative;
+    height: auto;
+    .profile-picture {
+      position: relative;
+      display: inline-block;
+      border-radius: 100%;
+      margin-right: 3rem;
+      vertical-align: bottom;
+      height: 150px;
+      width: 150px;
+    }
+    .name {
+      position: relative;
+      display: inline-block;
+      font-weight: 300;
+      font-size: 4.5rem;
+    }
+  }
+}

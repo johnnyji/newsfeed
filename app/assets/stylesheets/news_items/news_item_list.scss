@@ -5,6 +5,20 @@
   margin: 2rem auto;
   max-width: 800px;
   min-width: 375px;
+  .no-news-items {
+    text-align: center;
+    h1 {
+      color: $light-text-color;
+      font-weight: 400;
+      margin-bottom: 3rem;
+    }
+    .new-post-button {
+      @include button-style;
+      padding: 1rem 1.7rem;
+      font-size: 1.7rem;
+      border-radius: 80px;
+    }
+  }
   .news-item-card {
     @include outer-container;
     padding: 1rem;

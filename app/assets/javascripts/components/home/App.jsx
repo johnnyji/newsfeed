@@ -37,12 +37,15 @@ var App = React.createClass({
     if (!s.componentReady) { return <FullPageSpinner /> }
     return (
       <div className="app-container">
+
         {s.message && <FlashMessage message={s.message}/>}
         {s.profileModal && <ProfileModal currentUser={s.currentUser} />}
-        {s.NewPostModal && <NewPostModal currentUser={s.currentUser} />}
+        {s.newPostModal && <NewPostModal currentUser={s.currentUser} currentLocation={s.currentLocation}/>}
+
         <AppHeader currentUser={s.currentUser} />
         <AppCurrentCity currentLocation={s.currentLocation} currentUser={s.currentUser} />
         <NewsItemsList currentUser={s.currentUser} currentLat={s.currentLat} currentLon={s.currentLon}/>
+        
       </div>
     );
   }

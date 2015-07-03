@@ -17,7 +17,11 @@ var ProfileModal = React.createClass({
           onClick={this._exitProfileModal}></img>
 
         <div className="profile-modal">
-          <img className="profile-picture" src={p.currentUser.profile_picture}></img>
+          <div className="profile-header">
+            <img className="profile-picture" src={p.currentUser.profile_picture}></img>
+            <h1 className="name">{p.currentUser.name}</h1>
+          </div>
+
         </div>
 
       </div>

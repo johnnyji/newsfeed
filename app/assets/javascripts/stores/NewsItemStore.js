@@ -20,6 +20,19 @@ var NewsItemStore = Reflux.createStore({
       this._sortItemsByUpvotes(data.news_items);
     }.bind(this));
   },
+  onCreateNewItem: function(data) {
+    $.ajax({
+      url: "/news_items",
+      method: "POST",
+      data: data,
+      success: function(data) {
+
+      }.bind(this),
+      error: function(xhr, status, error) {
+
+      }.bind(this),
+    });
+  },
   onFilterByCity: function(data) {
     // data: { "city": "typing city name..." }
     $.ajax({

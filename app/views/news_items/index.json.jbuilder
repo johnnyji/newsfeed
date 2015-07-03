@@ -3,5 +3,5 @@ if @news_items.present?
     json.partial! "news_item", news_item: news_item
   end
 else
-  json.message "No news items yet!"
+  json.message "No news items yet in your area yet..."
 end

@@ -13,14 +13,20 @@ class NewsItemsController < ApplicationController
     render "show.json.jbuilder"
   end
 
-  def create
+  def create #params: news_item
+    @news_item = current_user.news_items.create!(news_item_params)
+    render "create.json.jbuilder"
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { errors: e.record.errors.messages }, status: 422
   end
 
   def destroy
   end
 
-  def search
-    @news_items = NewsItem.query_by_city(params[:city])
+  private
+
+  def news_item_params
+    params.require(:news_item).permit(:title, :link, :description, :location, :latitude, :longitude)
   end
 
 end

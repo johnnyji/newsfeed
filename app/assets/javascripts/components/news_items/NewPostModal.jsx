@@ -35,12 +35,8 @@ var NewPostModal = React.createClass({
     });
   },
   _handleSubmit: function(e) {
-    var s = this.state;
     e.preventDefault();
-
-    if (s.errors && s.errorMessage) { return AppActions.triggerMessage(s.errorMessage); }
-    if (s.errors) { return AppActions.triggerMessage("Please fill out the fields correctly"); }
-    NewsItemStore.createNewItem(s.news_item);
+    NewPostActions.submitPost();
   },
   render: function() {
     var s = this.state;
@@ -70,7 +66,7 @@ var NewPostModal = React.createClass({
             <InputErrorMessage error={s.errors.link} message={s.errorMessages.link} />
             <input
               className={s.errors.link ? errorClass : null}
-              placeholder="Link"
+              placeholder="Link (optional)"
               type="text"
               name="link"
               onChange={this._handleInputChange}></input>

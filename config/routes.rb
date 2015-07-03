@@ -14,8 +14,7 @@ Rails.application.routes.draw do
 
   controller :news_items do
     get "/news_items" => :index
-    post "/new_news_item" => :create
-    post "/filter_city" => :search
+    post "/news_items" => :create
   end
 
 end

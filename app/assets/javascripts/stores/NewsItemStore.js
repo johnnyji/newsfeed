@@ -1,5 +1,5 @@
 var NewsItemState = {
-  news_items: null,
+  news_items: [],
   message: null,
   componentReady: false,
   itemBeingViewed: null,
@@ -26,26 +26,11 @@ var NewsItemStore = Reflux.createStore({
       method: "POST",
       data: data,
       success: function(data) {
-
+        this._handleCreateSuccess(data.news_item);
       }.bind(this),
       error: function(xhr, status, error) {
-
-      }.bind(this),
-    });
-  },
-  onFilterByCity: function(data) {
-    // data: { "city": "typing city name..." }
-    $.ajax({
-      url: "/filter_city",
-      method: "POST",
-      data: data,
-      success: function(data) {
-        if (data.message) { this._handleMessage(); }
-        this.state.news_items = data.news_items;
-        this.trigger(this.state);
-      }.bind(this),
-      error: function(xhr, status, error) {
-
+        AppActions.triggerMessage("Unable to save due to errors");
+        NewPostActions.setSubmitErrors(xhr.responseJSON.errors);
       }.bind(this),
     });
   },
@@ -55,6 +40,12 @@ var NewsItemStore = Reflux.createStore({
     } else {
       this.state.itemBeingViewed = null
     }
+    this.trigger(this.state);
+  },
+  _handleCreateSuccess: function(newsItem) {
+    this.state.news_items.unshift(newsItem);
+    AppActions.toggleNewPostModal();
+    AppActions.triggerMessage(newsItem.title + " posted!");
     this.trigger(this.state);
   },
   _sortItemsByUpvotes: function(newsItems) {

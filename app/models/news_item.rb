@@ -4,6 +4,7 @@ class NewsItem < ActiveRecord::Base
   has_many :stars, dependent: :destroy
   has_many :upvotes, dependent: :destroy
 
-  # scope :query_by_city,
-  #   lambda { |city| where(city: nil) }.call
+  validates :title, presence: { message: "Title cannot be blank!" },
+                    uniqueness: { message: "This title is already taken" }
+  validates :description, presence: { message: "Description cannot be blank!" }
 end

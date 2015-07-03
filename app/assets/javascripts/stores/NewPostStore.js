@@ -34,9 +34,9 @@ var NewPostStore = Reflux.createStore({
     return this.maximumTitleLength;
   },
   onSetLocation: function(location, lat, lon) {
-    this.state.location = location;
-    this.state.latitude = lat;
-    this.state.longitude = lon;
+    this.state.news_item.location = location;
+    this.state.news_item.latitude = lat;
+    this.state.news_item.longitude = lon;
     this.trigger(this.state);
   },
   onHandleInputChange: function(field, value) {
@@ -46,6 +46,23 @@ var NewPostStore = Reflux.createStore({
       case "description": this._validateDescription(value); break;
       default: this.trigger(this.state);
     }
+  },
+  onSubmitPost: function() {
+    var newsItem = this.state.news_item;
+    var errors = this.state.errors;
+    var emptyFields = _.isEmpty(newsItem.title) || _.isEmpty(newsItem.description);
+    var errorsPresent = errors.title || errors.link || errors.description;
+    
+    if (emptyFields || errorsPresent) { 
+      return AppActions.triggerMessage("Please fill out the fields correctly")
+    }
+
+    NewsItemActions.createNewItem({ news_item: this.state.news_item });
+  },
+  onSetSubmitErrors: function(errors) {
+    if (errors.title) { this._triggerError("title", errors.title[0]); }
+    if (errors.link) { this._triggerError("link", errors.link[0]); }
+    if (errors.description) { this._triggerError("description", errors.description[0]); }
   },
   _validateTitle: function(value) {
     var validTitle = value.length <= this.maximumTitleLength;
@@ -74,10 +91,11 @@ var NewPostStore = Reflux.createStore({
     if (!validDescription) { return this._triggerError("description", "Description must be longer than 10 characters"); }
 
     this._removeError("description");
-    this.state.news_item.link = value;
+    this.state.news_item.description = value;
     this.trigger(this.state);
   },
   _triggerError: function(field, errorMessage) {
+    debugger;
     this.state.errors[field] = true;
     this.state.errorMessages[field] = errorMessage;
     this.trigger(this.state);

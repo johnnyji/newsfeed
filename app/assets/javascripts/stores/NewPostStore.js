@@ -45,21 +45,28 @@ var NewPostStore = Reflux.createStore({
     }
   },
   _validateTitle: function(value) {
-    var invalidTitle = value.length > this.maximumTitleLength;
+    var validTitle = value.length <= this.maximumTitleLength;
     this.state.titleLengthCount = value.length;
 
-    if (invalidTitle) {
-      return this._triggerError("Title must be under 100 characters!")
-    } else {
-
-    }
+    if (!validTitle) { return this._triggerError("Title must be under 100 characters"); }
+    this.state.news_item.title = value;
     this.trigger(this.state);
   },
   _validateLink: function(value) {
+    var linkRegex = new RegExp("^(http|https)://", "i");
+    var validLink = linkRegex.test(value);
 
+    value.toLowerCase();
+    if (!validLink) { return this._triggerError("Links must being with either http:// or https://") }
+    this.state.news_item.link = link;
+    this.trigger(this.state);
   },
   _validateDescription: function(value) {
-    var invalidDescription: value.length < this.minimumDescriptionLength;
+    var validDescription = value.length >= this.minimumDescriptionLength;
+
+    if (!validDescription) { return this._triggerError("Description must be longer than 10 characters"); }
+    this.state.news_item.link = link;
+    this.trigger(this.state);
   },
   _triggerError: function(field, errorMessage) {
     this.state.errors[field] = true;

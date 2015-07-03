@@ -1,1 +1,1 @@
-json.user current_user, :id, :name, :profile_picture
+json.user current_user, :id, :name, :profile_thumbnail, :profile_picture

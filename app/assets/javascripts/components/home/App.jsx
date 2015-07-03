@@ -7,6 +7,7 @@ var App = React.createClass({
       currentLocation: state.currentLocation,
       currentLat: state.currentLat,
       currentLon: state.currentLon,
+      profileModal: state.profileModal,
       newPostModal: state.newPostModal,
       message: state.message,
       componentReady: state.componentReady,
@@ -23,6 +24,7 @@ var App = React.createClass({
       currentLocation: data.currentLocation,
       currentLat: data.currentLat,
       currentLon: data.currentLon,
+      profileModal: data.profileModal,
       newPostModal: data.newPostModal,
       message: data.message,
       componentReady: data.componentReady,
@@ -36,8 +38,10 @@ var App = React.createClass({
     return (
       <div className="app-container">
         {s.message && <FlashMessage message={s.message}/>}
+        {s.profileModal && <ProfileModal currentUser={s.currentUser} />}
+        {s.NewPostModal && <NewPostModal currentUser={s.currentUser} />}
         <AppHeader currentUser={s.currentUser} />
-        <AppCurrentCity currentLocation={s.currentLocation} />
+        <AppCurrentCity currentLocation={s.currentLocation} currentUser={s.currentUser} />
         <NewsItemsList currentUser={s.currentUser} currentLat={s.currentLat} currentLon={s.currentLon}/>
       </div>
     );

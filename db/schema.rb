@@ -87,9 +87,10 @@ ActiveRecord::Schema.define(version: 20150701191433) do
     t.string   "uid"
     t.string   "token"
     t.string   "secret"
+    t.string   "profile_thumbnail"
     t.string   "profile_picture"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_foreign_key "news_items", "users"

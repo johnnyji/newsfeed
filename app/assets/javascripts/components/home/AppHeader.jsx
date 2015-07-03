@@ -8,6 +8,9 @@ var AppHeader = React.createClass({
   _toggleNewPostModal: function() {
     AppActions.toggleNewPostModal();
   },
+  _toggleProfileModal: function() {
+    AppActions.toggleProfileModal();
+  },
   render: function() {
     var p = this.props;
     var s = this.state;
@@ -20,7 +23,7 @@ var AppHeader = React.createClass({
 
         {p.currentUser &&
           <div className="header-right">
-            <h3>{p.currentUser.name}</h3>
+            <img className="profile-thumbnail" src={p.currentUser.profile_thumbnail} onClick={this._toggleProfileModal}></img>
             <button onClick={this._toggleNewPostModal}>New Post</button>
           </div>
         }

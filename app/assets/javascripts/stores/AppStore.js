@@ -4,6 +4,7 @@ var AppState =  {
   currentLat: null,
   currentLon: null,
   newPostModal: false,
+  profileModal: false,
   message: null,
   componentReady: false,
 }
@@ -38,6 +39,10 @@ var AppStore = Reflux.createStore({
       this.state.currentUser = data.user;
       this.trigger(this.state);
     }.bind(this));
+  },
+  onToggleProfileModal: function() {
+    this.state.profileModal = !this.state.profileModal;
+    this.trigger(this.state);
   },
   onToggleNewPostModal: function() {
     this.state.newPostModal = !this.state.newPostModal;

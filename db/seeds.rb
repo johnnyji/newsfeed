@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user1 = User.create!(first_name: "Johnny", last_name: "Ji")
-user2 = User.create!(first_name: "Hanson", last_name: "Zhang")
-user3 = User.create!(first_name: "Jeremy", last_name: "Shazi")
+user1 = User.create!(name: "Johnny Ji")
+user2 = User.create!(name: "Hanson Zhang")
+user3 = User.create!(name: "Jeremy Shazi")
 user_id = [user1.id, user2.id, user3.id].sample
 
 (1..100).each do |num|

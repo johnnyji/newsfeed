@@ -1,11 +1,12 @@
 @import "clarity";
 
 .app-header {
+  @include linear-gradient-top-bottom($primary-brand-color, lighten($primary-brand-color, 8%));
   position: relative;
   padding: 1rem;
   height: 75px;
   color: #FFF;
-  background-color: $primary-brand-color;
+  box-shadow: 0 4px 3px -3px $secondary-brand-color;
   .header-left {
     float: left;
     .logo {
@@ -17,9 +18,15 @@
     float: right;
     margin-right: 1rem;
     vertical-align: top;
-    h3 {
+    .profile-thumbnail {
       position: relative;
-      display: inline-block;
+      top: -3px;
+      margin-right: 1rem;
+      vertical-align: middle;
+      border-radius: 100%;
+      &:hover {
+        cursor: pointer;
+      }
     }
     button {
       @include lite-button-style;

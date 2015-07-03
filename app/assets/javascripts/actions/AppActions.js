@@ -2,8 +2,7 @@ var AppActions = Reflux.createActions([
   "loadCurrentUser",
   "geolocateUser",
   "toggleNewPostModal",
-  "toggleSignupModal",
-  "toggleLoginModal",
+  "toggleProfileModal",
   "toggleNewsItemModal",
   "triggerMessage",
   "clearMessage"

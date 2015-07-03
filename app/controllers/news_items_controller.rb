@@ -3,7 +3,7 @@ class NewsItemsController < ApplicationController
 
   def index
     offset = params[:offset] ? params[:offset] : 0
-    
+
     @news_items = NewsItem.all.order(created_at: :desc).offset(offset).limit(10)
     render "index.json.jbuilder"
   end

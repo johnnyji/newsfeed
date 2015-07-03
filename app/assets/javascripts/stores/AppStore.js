@@ -5,6 +5,7 @@ var AppState =  {
   currentLon: null,
   newPostModal: false,
   profileModal: false,
+  itemBeingViewed: null,
   message: null,
   componentReady: false,
 }
@@ -25,6 +26,10 @@ var AppStore = Reflux.createStore({
   },
   getCurrentLon: function() {
     return this.state.currentLon;
+  },
+  onSetItemBeingViewed: function(newsItem) {
+    this.state.itemBeingViewed = newsItem;
+    this.trigger(this.state);
   },
   onGeolocateUser: function() {
     $.ajax({
@@ -64,5 +69,5 @@ var AppStore = Reflux.createStore({
   onClearMessage: function() {
     this.state.message = null;
     this.trigger(this.state);
-  }
+  },
 });

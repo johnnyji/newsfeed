@@ -36,11 +36,11 @@ var NewsItemStore = Reflux.createStore({
   },
   onToggleNewsItemModal: function(newsItemId) {
     if (newsItemId) {
-      this.state.itemBeingViewed = _.find(this.state.news_items, { "id": newsItemId });
+      var newsItem = _.find(this.state.news_items, { "id": newsItemId });
+      AppActions.setItemBeingViewed(newsItem);
     } else {
-      this.state.itemBeingViewed = null
+      AppActions.setItemBeingViewed();
     }
-    this.trigger(this.state);
   },
   _handleCreateSuccess: function(newsItem) {
     this.state.news_items.unshift(newsItem);

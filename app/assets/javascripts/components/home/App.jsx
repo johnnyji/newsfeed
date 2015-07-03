@@ -9,6 +9,7 @@ var App = React.createClass({
       currentLon: state.currentLon,
       profileModal: state.profileModal,
       newPostModal: state.newPostModal,
+      itemBeingViewed: state.itemBeingViewed,
       message: state.message,
       componentReady: state.componentReady,
     };
@@ -26,6 +27,7 @@ var App = React.createClass({
       currentLon: data.currentLon,
       profileModal: data.profileModal,
       newPostModal: data.newPostModal,
+      itemBeingViewed: data.itemBeingViewed,
       message: data.message,
       componentReady: data.componentReady,
     });
@@ -35,17 +37,16 @@ var App = React.createClass({
     var p = this.props;
 
     if (!s.componentReady) { return <FullPageSpinner /> }
+    if (s.profileModal) { return <ProfileModal currentUser={s.currentUser} /> }
+    if (s.newPostModal) { return <NewPostModal currentUser={s.currentUser} currentLocation={s.currentLocation}/> }
+    if (s.itemBeingViewed) { return <NewsItemModal newsItem={s.itemBeingViewed} currentUser={s.currentUser}/> }
+
     return (
       <div className="app-container">
-
         {s.message && <FlashMessage message={s.message}/>}
-        {s.profileModal && <ProfileModal currentUser={s.currentUser} />}
-        {s.newPostModal && <NewPostModal currentUser={s.currentUser} currentLocation={s.currentLocation}/>}
-
         <AppHeader currentUser={s.currentUser} />
         <AppCurrentCity currentLocation={s.currentLocation} currentUser={s.currentUser} />
         <NewsItemsList currentUser={s.currentUser} currentLat={s.currentLat} currentLon={s.currentLon}/>
-        
       </div>
     );
   }

@@ -23,7 +23,7 @@ var NewPostState = {
 var NewPostStore = Reflux.createStore({
   init: function() {
     this.state = NewPostState;
-    this.maximumTitleLength = 100;
+    this.maximumTitleLength = 50;
     this.minimumDescriptionLength = 10;
     this.listenToMany(NewPostActions);
   },

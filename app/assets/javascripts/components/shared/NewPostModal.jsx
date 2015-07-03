@@ -54,10 +54,10 @@ var NewPostModal = React.createClass({
           onClick={this._toggleNewPostModal}></img>
 
         <form onSubmit={this._handleSubmit}>
-          <h1>What's happening in {s.currentLocation}?</h1>
+          <h1>What's happening in {p.currentLocation}?</h1>
 
-          <div className="title_container">
-            {s.errors.title && <div>{s.errorMessages.title}</div>}
+          <div className="title-container">
+            <InputErrorMessage error={s.errors.title} message={s.errorMessages.title} />
             <input
               placeholder="Awesome post title"
               type="text"
@@ -66,8 +66,8 @@ var NewPostModal = React.createClass({
             <small>{s.titleLengthCount} / {NewPostStore.getMaximumTitleLength()}</small>
           </div>
 
-          <div className="link_container">
-            {s.errors.link && <div>{s.errorMessages.link}</div>}
+          <div className="link-container">
+            <InputErrorMessage error={s.errors.link} message={s.errorMessages.link} />
             <input
               placeholder="Link"
               type="text"
@@ -75,21 +75,13 @@ var NewPostModal = React.createClass({
               onChange={this._handleInputChange}></input>
           </div>
 
-          <input
-            placeholder="youremail@domain.com"
-            type="email"
-            name="email"
-            onChange={this._handleAccountInfo}></input>
-          <input
-            placeholder="Your password"
-            type="password"
-            name="password"
-            onChange={this._handleAccountInfo}></input>
-          <input
-            placeholder="Confirm password"
-            type="password"
-            name="password_confirmation"
-            onChange={this._handleAccountInfo}></input>
+          <div className="description-container">
+            <InputErrorMessage error={s.errors.description} message={s.errorMessages.description} />
+            <textarea
+              placeholder="Tell people why it's important!"
+              name="description"
+              onChange={this._handleInputChange}></textarea>
+          </div>
 
           <input type="submit" defaultValue="Post"></input>
         </form>

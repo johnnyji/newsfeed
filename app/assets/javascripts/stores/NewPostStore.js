@@ -51,7 +51,7 @@ var NewPostStore = Reflux.createStore({
     var validTitle = value.length <= this.maximumTitleLength;
     this.state.titleLengthCount = value.length;
 
-    if (!validTitle) { return this._triggerError("title", "Title must be under 100 characters"); }
+    if (!validTitle) { return this._triggerError("title", "Title must be under " + this.maximumTitleLength + " characters"); }
 
     this._removeError("title");
     this.state.news_item.title = value;

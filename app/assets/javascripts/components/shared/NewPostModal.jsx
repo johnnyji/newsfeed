@@ -53,7 +53,7 @@ var NewPostModal = React.createClass({
           src="https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png"
           onClick={this._toggleNewPostModal}></img>
 
-        <form onSubmit={this._handleSubmit}>
+        <form className="new-post-form" onSubmit={this._handleSubmit}>
           <h1>What's happening in {p.currentLocation}?</h1>
 
           <div className="title-container">

@@ -1,0 +1,16 @@
+@import "clarity";
+
+.new-post-form {
+  @include modal-container;
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    color: $light-text-color;
+    margin-bottom: 3rem;
+  }
+  input[type=text] {
+    @include input-field-style;
+    text-align: left;
+  }
+}

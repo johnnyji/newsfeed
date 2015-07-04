@@ -16,8 +16,7 @@ class NewsItemsController < ApplicationController
   def create #params: news_item
     @news_item = current_user.news_items.create!(news_item_params)
     render "create.json.jbuilder"
-  rescue ActiveRecord::RecordInvalid => e
-    render json: { errors: e.record.errors.messages }, status: 422
+    rescue_record_invalid
   end
 
   def destroy

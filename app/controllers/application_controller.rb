@@ -15,4 +15,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def rescue_record_invalid
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { errors: e.record.errors.messages }, status: 422
+  end
+
 end

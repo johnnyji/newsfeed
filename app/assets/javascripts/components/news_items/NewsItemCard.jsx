@@ -3,12 +3,12 @@ var NewsItemCard = React.createClass({
     currentUser: React.PropTypes.object,
     newsItem: React.PropTypes.object
   },
-  _handleUpvoteClick: function() {
-    if (this.props.currentUser) {
-      var hello = "hi"
-    } else {
-      AppActions.toggleSignupModal();
-    }
+  _handleRemoveUpvote: function() {
+    UpvoteActions.removeUpvote(this.props.newsItem.id);
+  },
+  _handleCreateUpvote: function() {
+    if (!this.props.currentUser) { return AppActions.toggleSignupModal(); }
+    UpvoteActions.createUpvote(this.props.newsItem.id);
   },
   _showNewsItemModal: function() {
     NewsItemActions.toggleNewsItemModal(this.props.newsItem.id);
@@ -21,7 +21,13 @@ var NewsItemCard = React.createClass({
     return (
       <div className="news-item-card">
 
-          <Upvoter count={newsItem.upvotes} newsItemId={newsItem.id} handleClick={this._handleUpvoteClick} />
+          <Upvoter
+            upvotedByCurrentUser={newsItem.upvoted_by_current_user}
+            count={newsItem.upvotes}
+            newsItemId={newsItem.id}
+            handleCreateUpvote={this._handleCreateUpvote}
+            handleRemoveUpvote={this._handleRemoveUpvote}
+          />
 
           <div className="info">
             <h2 className="title" onClick={this._showNewsItemModal}>{newsItem.title}</h2>

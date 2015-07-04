@@ -1,17 +1,25 @@
 var Upvoter = React.createClass({
   propTypes: {
+    upvotedByCurrentUser: React.PropTypes.bool.isRequired,
     count: React.PropTypes.number.isRequired,
     newsItemId: React.PropTypes.number.isRequired,
-    handleClick: React.PropTypes.func.isRequired,
+    handleCreateUpvote: React.PropTypes.func.isRequired,
+    handleRemoveUpvote: React.PropTypes.func.isRequired,
   },
-  _handleClick: function() {
-    this.props.handleClick();
+  _handleCreateUpvote: function() {
+    this.props.handleCreateUpvote();
+  },
+  _handleRemoveUpvote: function() {
+    this.props.handleRemoveUpvote();
   },
   render: function() {
+    var p = this.props;
+
     return (
       <div className="upvoter">
         <div className="upvote-icon">
-          <img src="https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-07-128.png" onClick={this._handleClick}></img>
+          {p.upvotedByCurrentUser && <i className="fa fa-angle-up voted" onClick={this._handleRemoveUpvote}></i>}
+          {!p.upvotedByCurrentUser && <i className="fa fa-angle-up" onClick={this._handleCreateUpvote}></i>}
         </div>
         <p className="upvote-count">{this.props.count}</p>
       </div>

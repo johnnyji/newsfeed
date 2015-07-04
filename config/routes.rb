@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     delete "/delete_user" => :destroy
   end
 
+  controller :upvotes do
+    post "/upvote" => :create
+    delete "/upvote" => :destroy
+  end
+
   controller :news_items do
     get "/news_items" => :index
     post "/news_items" => :create

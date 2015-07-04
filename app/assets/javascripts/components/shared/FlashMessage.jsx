@@ -1,6 +1,6 @@
 var FlashMessage = React.createClass({
   propTypes: {
-    message: React.PropTypes.string.isRequired
+    message: React.PropTypes.string
   },
   _handleRemoveMessage: function() {
     AppActions.clearMessage();
@@ -8,6 +8,7 @@ var FlashMessage = React.createClass({
   render: function() {
     var p = this.props;
 
+    if (!p.message) { return <div/>; }
     return (
       <div className="flash-message">
         <p className="message">{p.message}</p>

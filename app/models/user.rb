@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :upvotes, dependent: :destroy
   has_many :news_items, dependent: :destroy
   has_many :comments, through: :news_items
   has_many :replies, through: :comments
@@ -14,13 +15,5 @@ class User < ActiveRecord::Base
     )
     user
   end
-
-  # def self.get_original_picture_size(picture_url)
-  #   url_split_point = picture_url.rindex("_normal") - 1
-  #   url_beginning = picture_url.slice!(0..url_split_point)
-  #   url_end = picture_url.remove(url_beginning)
-  #   url_end.gsub!("_normal", "")
-  #   url_beginning + url_end
-  # end
 
 end

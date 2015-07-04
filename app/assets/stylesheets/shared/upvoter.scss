@@ -1,0 +1,35 @@
+@import "clarity";
+
+.upvoter {
+  @include span-columns(2);
+  position: relative;
+  text-align: center;
+  margin-right: 1.5rem;
+  .upvote-count {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+  .upvote-icon {
+    position: relative;
+    margin: 0 auto;
+    top: -8px;
+    height: 100px;
+    width: 100px;
+    i {
+      @include transition(0.3s);
+      @include position-center(absolute, 50%, 50%);
+      font-size: 80px;
+      color: $text-color;
+      &:hover {
+        font-size: 100px;
+        cursor: pointer;
+      }
+    }
+    .voted {
+      color: $secondary-brand-color;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

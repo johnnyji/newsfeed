@@ -1,5 +1,6 @@
 class NewsItem < ActiveRecord::Base
   belongs_to :user
+
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :stars, dependent: :destroy
   has_many :upvotes, dependent: :destroy
@@ -7,4 +8,9 @@ class NewsItem < ActiveRecord::Base
   validates :title, presence: { message: "Title cannot be blank!" },
                     uniqueness: { message: "This title is already taken" }
   validates :description, presence: { message: "Description cannot be blank!" }
+
+  def upvoted_by_user?(user_id)
+    self.upvotes.pluck(:user_id).include?(user_id)
+  end
+
 end

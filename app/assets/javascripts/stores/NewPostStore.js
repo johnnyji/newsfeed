@@ -52,9 +52,9 @@ var NewPostStore = Reflux.createStore({
     var errors = this.state.errors;
     var emptyFields = _.isEmpty(newsItem.title) || _.isEmpty(newsItem.description);
     var errorsPresent = errors.title || errors.link || errors.description;
-    
-    if (emptyFields || errorsPresent) { 
-      return AppActions.triggerMessage("Please fill out the fields correctly")
+
+    if (emptyFields || errorsPresent) {
+      return AppActions.triggerMessage("Please fill out the fields correctly");
     }
 
     NewsItemActions.createNewItem({ news_item: this.state.news_item });
@@ -95,7 +95,6 @@ var NewPostStore = Reflux.createStore({
     this.trigger(this.state);
   },
   _triggerError: function(field, errorMessage) {
-    debugger;
     this.state.errors[field] = true;
     this.state.errorMessages[field] = errorMessage;
     this.trigger(this.state);

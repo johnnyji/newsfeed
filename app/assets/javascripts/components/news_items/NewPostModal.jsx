@@ -1,4 +1,4 @@
-var NewPostModal = React.createClass({
+ var NewPostModal = React.createClass({
   mixins: [Reflux.ListenerMixin],
   propTypes: {
     currentLocation: React.PropTypes.string.isRequired,
@@ -46,6 +46,7 @@ var NewPostModal = React.createClass({
 
     return (
       <div className="full-page-modal">
+        <FlashMessage message={p.message}/>
         <ExitModalButton exitCallback={this._exitNewPostModal} />
 
         <form className="new-post-form" onSubmit={this._handleSubmit}>

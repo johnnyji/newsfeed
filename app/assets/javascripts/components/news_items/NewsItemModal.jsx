@@ -5,10 +5,17 @@ var NewsItemModal = React.createClass({
   },
   _handleUpvoteClick: function() {
     if (this.props.currentUser) {
-      // the user will upvote
+      UpvoteActions.createUpvote(this.props.newsItem.id);
     } else {
       AppActions.triggerMessage("Please sign in to vote");
     }
+  },
+  _handleCreateUpvote: function() {
+    if (!this.props.currentUser) { return AppActions.triggerMessage("Please sign in to upvote"); }
+    UpvoteActions.createUpvote(this.props.newsItem.id);
+  },
+  _handleRemoveUpvote: function() {
+    UpvoteActions.removeUpvote(this.props.newsItem.id);
   },
   _exitNewsItemModal: function() {
     NewsItemActions.toggleNewsItemModal();
@@ -20,17 +27,22 @@ var NewsItemModal = React.createClass({
 
     return (
       <div className="full-page-modal">
-        <img
-          className="exit-modal"
-          src="https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-22-128.png"
-          onClick={this._exitNewsItemModal}></img>
+        <FlashMessage message={p.message}/>
+        <ExitModalButton exitCallback={this._exitNewsItemModal} />
 
         <div className="show-news-item">
           <div className="item-header">
-            <Upvoter count={newsItem.upvotes} newsItemId={newsItem.id} handleClick={this._handleUpvoteClick}/>
+            <Upvoter
+              upvotedByCurrentUser={newsItem.upvoted_by_current_user}
+              count={newsItem.upvotes}
+              newsItemId={newsItem.id}
+              handleCreateUpvote={this._handleCreateUpvote}
+              handleRemoveUpvote={this._handleRemoveUpvote}
+            />
             <h1 className="title">{newsItem.title}</h1>
           </div>
         </div>
+
       </div>
     );
   }

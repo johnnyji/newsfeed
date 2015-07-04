@@ -8,6 +8,7 @@ var App = React.createClass({
       currentLat: state.currentLat,
       currentLon: state.currentLon,
       profileModal: state.profileModal,
+      signupModal: state.signupModal,
       newPostModal: state.newPostModal,
       itemBeingViewed: state.itemBeingViewed,
       message: state.message,
@@ -26,6 +27,7 @@ var App = React.createClass({
       currentLat: data.currentLat,
       currentLon: data.currentLon,
       profileModal: data.profileModal,
+      signupModal: data.signupModal,
       newPostModal: data.newPostModal,
       itemBeingViewed: data.itemBeingViewed,
       message: data.message,
@@ -37,13 +39,14 @@ var App = React.createClass({
     var p = this.props;
 
     if (!s.componentReady) { return <FullPageSpinner /> }
+    if (s.signupModal) { return <SignupModal /> }
     if (s.profileModal) { return <ProfileModal currentUser={s.currentUser} /> }
-    if (s.newPostModal) { return <NewPostModal currentUser={s.currentUser} currentLocation={s.currentLocation}/> }
-    if (s.itemBeingViewed) { return <NewsItemModal newsItem={s.itemBeingViewed} currentUser={s.currentUser}/> }
+    if (s.newPostModal) { return <NewPostModal currentUser={s.currentUser} currentLocation={s.currentLocation} message={s.message} /> }
+    if (s.itemBeingViewed) { return <NewsItemModal newsItem={s.itemBeingViewed} currentUser={s.currentUser} message={s.message}/> }
 
     return (
       <div className="app-container">
-        {s.message && <FlashMessage message={s.message}/>}
+        <FlashMessage message={s.message}/>
         <AppHeader currentUser={s.currentUser} />
         <AppCurrentCity currentLocation={s.currentLocation} currentUser={s.currentUser} />
         <NewsItemsList currentUser={s.currentUser} currentLat={s.currentLat} currentLon={s.currentLon}/>

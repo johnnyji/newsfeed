@@ -13,6 +13,9 @@ var NewsItemCard = React.createClass({
   _showNewsItemModal: function() {
     NewsItemActions.toggleNewsItemModal(this.props.newsItem.id);
   },
+  _showUserProfile: function() {
+    AppActions.toggleProfileModal(this.props.newsItem.user.id);
+  },
   render: function() {
     var p = this.props;
     var s = this.state;
@@ -31,8 +34,9 @@ var NewsItemCard = React.createClass({
 
           <div className="info">
             <h2 className="title" onClick={this._showNewsItemModal}>{newsItem.title}</h2>
-            <p className="description">{newsItem.description}</p>
+            {/*<p className="description">{newsItem.description}</p>*/}
             <div className="additional-info">
+              <img className="user-picture" src={newsItem.user.profile_thumbnail} onClick={this._showUserProfile}></img>
               <div className="posted-date">{newsItem.created_at}</div>
               <div className="comment-count" onClick={this._showNewsItemModal}>
                 View Comments ({newsItem.comments.length})

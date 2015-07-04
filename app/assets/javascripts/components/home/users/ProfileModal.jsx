@@ -1,6 +1,6 @@
 var ProfileModal = React.createClass({
   propTypes: {
-    currentUser: React.PropTypes.object.isRequired,
+    user: React.PropTypes.object.isRequired,
   },
   _exitProfileModal: function() {
     AppActions.toggleProfileModal();
@@ -15,8 +15,8 @@ var ProfileModal = React.createClass({
 
         <div className="profile-modal">
           <div className="profile-header">
-            <img className="profile-picture" src={p.currentUser.profile_picture}></img>
-            <h1 className="name">{p.currentUser.name}</h1>
+            <img className="profile-picture" src={p.user.profile_picture}></img>
+            <h1 className="name">{p.user.name}</h1>
           </div>
 
         </div>

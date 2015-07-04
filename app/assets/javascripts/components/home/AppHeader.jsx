@@ -9,7 +9,7 @@ var AppHeader = React.createClass({
     AppActions.toggleNewPostModal();
   },
   _toggleProfileModal: function() {
-    AppActions.toggleProfileModal();
+    AppActions.toggleProfileModal(this.props.currentUser.id);
   },
   render: function() {
     var p = this.props;

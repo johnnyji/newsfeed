@@ -7,6 +7,7 @@ var AppState =  {
   signupModal: false,
   profileModal: false,
   itemBeingViewed: null,
+  userBeingViewed: null,
   message: null,
   componentReady: false,
 }
@@ -59,8 +60,10 @@ var AppStore = Reflux.createStore({
     this.state.signupModal = !this.state.signupModal;
     this.trigger(this.state);
   },
-  onToggleProfileModal: function() {
-    this.state.profileModal = !this.state.profileModal;
+  onToggleProfileModal: function(userId) {
+    if (userId) { return this._setUserBeingViewed(userId); }
+    this.state.profileModal = false;
+    this.state.userBeingViewed = null;
     this.trigger(this.state);
   },
   onToggleNewPostModal: function() {
@@ -74,5 +77,24 @@ var AppStore = Reflux.createStore({
   onClearMessage: function() {
     this.state.message = null;
     this.trigger(this.state);
+  },
+  _setUserBeingViewed: function(userId) {
+    var currentUser = this.state.currentUser;
+    if (currentUser && userId == currentUser.id) { return this.state.userBeingViewed = currentUser }
+    $.ajax({
+      url: 'user',
+      type: 'POST',
+      dataType: 'json',
+      data: { user_id: userId }
+    })
+    .done(function(data) {
+      this.state.userBeingViewed = data.user;
+      this.state.profileModal = true;
+      this.trigger(this.state);
+    }.bind(this))
+    .fail(function(xhr, status, error) {
+      this.state.message = xhr.responseJSON.message;
+      this.trigger(this.state);
+    }.bind(this));
   },
 });

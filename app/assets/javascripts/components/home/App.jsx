@@ -11,6 +11,7 @@ var App = React.createClass({
       signupModal: state.signupModal,
       newPostModal: state.newPostModal,
       itemBeingViewed: state.itemBeingViewed,
+      userBeingViewed: state.userBeingViewed,
       message: state.message,
       componentReady: state.componentReady,
     };
@@ -30,6 +31,7 @@ var App = React.createClass({
       signupModal: data.signupModal,
       newPostModal: data.newPostModal,
       itemBeingViewed: data.itemBeingViewed,
+      userBeingViewed: data.userBeingViewed,
       message: data.message,
       componentReady: data.componentReady,
     });
@@ -40,7 +42,7 @@ var App = React.createClass({
 
     if (!s.componentReady) { return <FullPageSpinner /> }
     if (s.signupModal) { return <SignupModal /> }
-    if (s.profileModal) { return <ProfileModal currentUser={s.currentUser} /> }
+    if (s.profileModal) { return <ProfileModal user={s.userBeingViewed} /> }
     if (s.newPostModal) { return <NewPostModal currentUser={s.currentUser} currentLocation={s.currentLocation} message={s.message} /> }
     if (s.itemBeingViewed) { return <NewsItemModal newsItem={s.itemBeingViewed} currentUser={s.currentUser} message={s.message}/> }
 

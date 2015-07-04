@@ -38,6 +38,9 @@ var NewsItemModal = React.createClass({
             />
             <h1 className="title">{newsItem.title}</h1>
           </div>
+          <div className="item-description">{newsItem.description}</div>
+          <CommentBox />
+          <CommentList />
         </div>
 
       </div>

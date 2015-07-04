@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   root 'home#index'
 
   controller :session do
+    get "/current_user" => :show
     get "/auth/twitter/callback" => :create
     delete "/logout" => :destroy
   end
 
   controller :users do
-    get "/current_user" => :show
+    post "/user" => :show
     delete "/delete_user" => :destroy
   end
 
@@ -20,6 +21,10 @@ Rails.application.routes.draw do
   controller :news_items do
     get "/news_items" => :index
     post "/news_items" => :create
+  end
+
+  controller :comments do
+    post "/comment" => :create
   end
 
 end

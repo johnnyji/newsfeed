@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20150701191433) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "news_items", force: :cascade do |t|
+    t.integer  "status",      default: 0
     t.string   "title"
     t.string   "link"
     t.string   "location"
@@ -44,8 +45,8 @@ ActiveRecord::Schema.define(version: 20150701191433) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "news_items", ["user_id"], name: "index_news_items_on_user_id", using: :btree

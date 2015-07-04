@@ -22,4 +22,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-twitter', '~> 1.2.0'
 
+gem 'squeel', '~> 1.2.3'
+gem 'whenever', '~> 0.9.4', require: false
+
 gem 'sdoc', '~> 0.4.0', group: :doc

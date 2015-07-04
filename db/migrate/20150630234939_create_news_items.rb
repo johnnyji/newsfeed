@@ -1,6 +1,7 @@
 class CreateNewsItems < ActiveRecord::Migration
   def change
     create_table :news_items do |t|
+      t.integer :status, default: 0
       t.string :title
       t.string :link
       t.string :location

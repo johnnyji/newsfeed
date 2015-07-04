@@ -46,12 +46,14 @@ var NewsItemStore = Reflux.createStore({
     var newsItem = _.find(this.state.news_items, { "id": newsItemId });
     newsItem.upvoted_by_current_user = true;
     newsItem.upvotes += 1;
+    this._sortItemsByUpvotes(this.state.news_items);
     this.trigger(this.state);
   },
   removeUpvoteNewsItem: function(newsItemId) {
     var newsItem = _.find(this.state.news_items, { "id": newsItemId });
     newsItem.upvoted_by_current_user = false;
     newsItem.upvotes -= 1;
+    this._sortItemsByUpvotes(this.state.news_items);
     this.trigger(this.state);
   },
   _handleCreateSuccess: function(newsItem) {

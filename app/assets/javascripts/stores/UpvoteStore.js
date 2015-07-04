@@ -13,6 +13,7 @@ var UpvoteStore = Reflux.createStore({
         NewsItemActions.upvoteNewsItem(newsItemId);
       },
       error: function(xhr, status, error) {
+        debugger;
         var errorMessage = xhr.responseJSON.errors[0];
         AppActions.triggerMessage(errorMessage);
       },

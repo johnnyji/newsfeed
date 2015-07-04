@@ -4,11 +4,8 @@ var NewsItemModal = React.createClass({
     newsItem: React.PropTypes.object.isRequired,
   },
   _handleUpvoteClick: function() {
-    if (this.props.currentUser) {
-      UpvoteActions.createUpvote(this.props.newsItem.id);
-    } else {
-      AppActions.triggerMessage("Please sign in to vote");
-    }
+    if (!this.props.currentUser) { AppActions.triggerMessage("Please sign in to vote"); }
+    UpvoteActions.createUpvote(this.props.newsItem.id);
   },
   _handleCreateUpvote: function() {
     if (!this.props.currentUser) { return AppActions.triggerMessage("Please sign in to upvote"); }

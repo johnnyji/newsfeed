@@ -39,26 +39,26 @@
           color: $secondary-brand-color;
         }
       }
-      .description {
-        font-size: 1.1rem;
-        margin: 0;
-      }
       .additional-info {
         margin-top: 1rem;
         color: $light-text-color;
-        font-size: 0.9rem;
         .user-picture {
           @include cursor-pointer;
           border-radius: 100%;
           height: 35px;
           vertical-align: middle;
-          margin-right: 1.5rem;
+          margin-right: 1rem;
         }
         .posted-date {
           @include transition(0.3s);
           position: relative;
           display: inline-block;
           margin-right: 1rem;
+        }
+        .user-name {
+          position: relative;
+          display: inline-block;
+          margin-right: 1.1rem;
         }
         .comment-count {
           position: relative;

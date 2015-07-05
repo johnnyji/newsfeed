@@ -80,7 +80,13 @@ var AppStore = Reflux.createStore({
   },
   _setUserBeingViewed: function(userId) {
     var currentUser = this.state.currentUser;
-    if (currentUser && userId == currentUser.id) { return this.state.userBeingViewed = currentUser }
+
+    if (currentUser && userId == currentUser.id) {
+      this.state.userBeingViewed = currentUser;
+      this.state.profileModal = true;
+      return this.trigger(this.state);
+    }
+
     $.ajax({
       url: 'user',
       type: 'POST',
@@ -93,8 +99,7 @@ var AppStore = Reflux.createStore({
       this.trigger(this.state);
     }.bind(this))
     .fail(function(xhr, status, error) {
-      this.state.message = xhr.responseJSON.message;
-      this.trigger(this.state);
+      this._triggerState(xhr.responseJSON.message);
     }.bind(this));
   },
 });

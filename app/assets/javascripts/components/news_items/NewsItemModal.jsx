@@ -28,7 +28,8 @@ var NewsItemModal = React.createClass({
         <ExitModalButton exitCallback={this._exitNewsItemModal} />
 
         <div className="show-news-item">
-          <div className="item-header">
+
+          <div className="item-container">
             <Upvoter
               upvotedByCurrentUser={newsItem.upvoted_by_current_user}
               count={newsItem.upvotes}
@@ -36,11 +37,23 @@ var NewsItemModal = React.createClass({
               handleCreateUpvote={this._handleCreateUpvote}
               handleRemoveUpvote={this._handleRemoveUpvote}
             />
-            <h1 className="title">{newsItem.title}</h1>
+
+            <div className="news-item-info">
+              <div>
+                <h1 className="title">{newsItem.title}</h1>
+                <div className="additional-info">
+                  <img src={newsItem.user.profile_thumbnail} className="user-picture"></img>
+                  <div className="user-name">{newsItem.user.name}</div>
+                  <div className="posted-date">{newsItem.created_at}</div>
+                </div>
+              </div>
+              <div className="item-description">{newsItem.description}</div>
+              <CommentBox />
+              <CommentList />
+            </div>
+            
           </div>
-          <div className="item-description">{newsItem.description}</div>
-          <CommentBox />
-          <CommentList />
+
         </div>
 
       </div>

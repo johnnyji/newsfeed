@@ -34,9 +34,9 @@ var NewsItemCard = React.createClass({
 
           <div className="info">
             <h2 className="title" onClick={this._showNewsItemModal}>{newsItem.title}</h2>
-            {/*<p className="description">{newsItem.description}</p>*/}
             <div className="additional-info">
               <img className="user-picture" src={newsItem.user.profile_thumbnail} onClick={this._showUserProfile}></img>
+              <div className="user-name">{newsItem.user.name}</div>
               <div className="posted-date">{newsItem.created_at}</div>
               <div className="comment-count" onClick={this._showNewsItemModal}>
                 View Comments ({newsItem.comments.length})

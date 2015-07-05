@@ -6,8 +6,8 @@ var CommentBox = React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <textarea ref="comment" ></textarea>
+      <div className="comment-box">
+        <textarea className="comment-area" ref="comment"></textarea>
         <button onClick={this._submitComment}>Post</button>
       </div>
     );

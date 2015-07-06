@@ -28,12 +28,12 @@ ActiveRecord::Schema.define(version: 20150701191433) do
   create_table "comments", force: :cascade do |t|
     t.string   "body"
     t.integer  "user_id"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "news_item_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
+  add_index "comments", ["news_item_id"], name: "index_comments_on_news_item_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "news_items", force: :cascade do |t|
@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 20150701191433) do
   create_table "replies", force: :cascade do |t|
     t.string   "body"
     t.integer  "user_id"
-    t.integer  "replyable_id"
-    t.string   "replyable_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  add_index "replies", ["comment_id"], name: "index_replies_on_comment_id", using: :btree
   add_index "replies", ["user_id"], name: "index_replies_on_user_id", using: :btree
 
   create_table "stars", force: :cascade do |t|

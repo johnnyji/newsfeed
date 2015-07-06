@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
-  belongs_to :commentable, polymorphic: true
-  has_many :replies, as: :replyable, dependent: :destroy
+  belongs_to :user
+  belongs_to :news_item
+  has_many :replies
 end

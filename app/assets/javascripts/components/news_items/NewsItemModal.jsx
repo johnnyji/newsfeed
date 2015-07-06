@@ -1,7 +1,19 @@
 var NewsItemModal = React.createClass({
+  mixins: [Reflux.ListenerMixin],
   propTypes: {
     currentUser: React.PropTypes.object,
     newsItem: React.PropTypes.object.isRequired,
+  },
+  getInitialState: function() {
+    var state = NewsItemModalStore.getInitialState();
+    return {
+      comments: state.comments,
+      noComments: state.noComments,
+    };
+  },
+  componentDidMount: function() {
+    this.listenTo(NewsItemModalStore, this._updateState);
+    NewsItemModalStore.loadComments(this.props.newsItem.id);
   },
   _handleUpvoteClick: function() {
     if (!this.props.currentUser) { AppActions.triggerMessage("Please sign in to vote"); }
@@ -16,6 +28,12 @@ var NewsItemModal = React.createClass({
   },
   _exitNewsItemModal: function() {
     NewsItemActions.toggleNewsItemModal();
+  },
+  _updateState: function(data) {
+    this.setState({
+      comments: data.comments,
+      noComments: data.noComments,
+    });
   },
   render: function() {
     var p = this.props;
@@ -48,10 +66,10 @@ var NewsItemModal = React.createClass({
                 </div>
               </div>
               <div className="item-description">{newsItem.description}</div>
-              <CommentBox />
-              <CommentList />
+              <CommentBox currentUser={p.currentUser} newsItemId={newsItem.id}/>
+              <CommentList comments={s.comments} noComments={s.noComments} />
             </div>
-            
+
           </div>
 
         </div>

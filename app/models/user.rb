@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :upvotes, dependent: :destroy
   has_many :news_items, dependent: :destroy
-  has_many :comments, through: :news_items
+  has_many :comments, dependent: :destroy
   has_many :replies, through: :comments
 
   def self.find_or_create_from_auth_hash(auth_hash)

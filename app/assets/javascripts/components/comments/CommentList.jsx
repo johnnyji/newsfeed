@@ -1,18 +1,21 @@
 var CommentList = React.createClass({
   propTypes: {
-    comments: React.PropTypes.string
+    noComments: React.PropTypes.bool.isRequired,
+    comments: React.PropTypes.array
   },
   render: function() {
     var p = this.props;
     var comments = _.map(p.comments, function(comment, i) {
-      <CommentCard key={i} comment={comment} />
+      return <CommentCard key={i} comment={comment} />
     });
+
+    if (p.noComments) { return <h1>No comments yet</h1> }
 
     return (
       <div>
-        {_.isEmpty(comments) && <h1>No comments yet.</h1>}
-        {comments && <div>{comments}</div>}
+        {comments}
       </div>
     );
+
   }
 });

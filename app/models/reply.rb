@@ -1,4 +1,4 @@
 class Reply < ActiveRecord::Base
-  belongs_to :replyable, polymorphic: true
+  belongs_to :comment
   belongs_to :user
 end

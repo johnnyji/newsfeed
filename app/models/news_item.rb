@@ -2,8 +2,7 @@ class NewsItem < ActiveRecord::Base
   enum status: { active: 0, archived: 1 }
   belongs_to :user
 
-  has_many :comments, as: :commentable, dependent: :destroy
-  has_many :stars, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :upvotes, dependent: :destroy
 
   validates :title, presence: { message: "Title cannot be blank!" },

@@ -39,7 +39,7 @@ var NewsItemCard = React.createClass({
               <div className="user-name">{newsItem.user.name}</div>
               <div className="posted-date">{newsItem.created_at}</div>
               <div className="comment-count" onClick={this._showNewsItemModal}>
-                View Comments ({newsItem.comments.length})
+                View Comments ({newsItem.comment_count})
               </div>
             </div>
           </div>

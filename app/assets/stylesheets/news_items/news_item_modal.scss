@@ -13,7 +13,7 @@
     .upvoter { top: 5px; }
 
     .news-item-info {
-      @include span-columns(7);
+      @include span-columns(8);
       position: relative;
       .title {
         position: relative;
@@ -45,7 +45,7 @@
         }
       }
       .item-description {
-        margin-top: 3rem;
+        margin: 2rem 0 4rem 0;
         font-size: 1.2rem;
         color: $light-text-color;
       }

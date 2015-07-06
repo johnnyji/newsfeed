@@ -24,8 +24,8 @@ var NewsItemModalStore = Reflux.createStore({
       this.trigger(this.state);
     }.bind(this));
   },
-  onSetNewsItemId: function(id) {
-    this.state.comment.news_item_id = id;
+  onSetNewsItemId: function(newItemId) {
+    this.state.comment.news_item_id = newsItemId;
   },
   onCreateComment: function(data, successCallback) {
     if (!data.body) { return AppActions.triggerMessage("Comments can't be blank!"); }
@@ -36,8 +36,7 @@ var NewsItemModalStore = Reflux.createStore({
       data: { comment: data }
     })
     .done(function(data) {
-      debugger;
-      this.state.comments.prepend(data.comment);
+      this.state.comments.unshift(data.comment);
       this.trigger(this.state);
       successCallback();
     }.bind(this));

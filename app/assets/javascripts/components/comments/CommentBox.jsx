@@ -20,6 +20,7 @@ var CommentBox = React.createClass({
     NewsItemModalActions.createComment(this.state.comment, this._handleCreateSuccess);
   },
   _handleCreateSuccess: function() {
+    var commentBox = React.findDOMNode(this.refs.comment);
     commentBox.value = "";
   },
   render: function() {

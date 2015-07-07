@@ -27,6 +27,22 @@ var CommentStore = Reflux.createStore({
     }
     this.trigger(this.state);
   },
+  onUpdateComment: function(commentId, data) {
+    $.ajax({
+      url: '/update_comment',
+      type: 'POST',
+      data: { id: commentId, comment: data }
+    })
+    .done(function() {
+      this.state.commentBeingEditedId = null;
+      NewsItemModalActions.handleUpdateComment(commentId, data.body);
+      AppActions.triggerMessage("Comment successfully updated.")
+      this.trigger(this.state);
+    }.bind(this))
+    .fail(function() {
+      AppActions.triggerMessage("Unable to update comment.");
+    });
+  },
   onDeleteComment: function(commentId) {
     $.ajax({
       url: '/comment',
@@ -35,7 +51,9 @@ var CommentStore = Reflux.createStore({
     })
     .done(function() {
       this.commentBeingDeletedId = null;
-      NewsItemModalStore.handleDeleteComment(commentId);
+      NewsItemModalActions.handleDeleteComment(commentId);
+      AppActions.triggerMessage("Comment successfully deleted.")
+      this.trigger(this.state);
     }.bind(this));
   },
 });

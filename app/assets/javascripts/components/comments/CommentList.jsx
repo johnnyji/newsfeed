@@ -1,7 +1,7 @@
 var CommentList = React.createClass({
   mixins: [Reflux.ListenerMixin],
   propTypes: {
-    currentUser: React.PropTypes.object.isRequired,
+    currentUser: React.PropTypes.object,
     noComments: React.PropTypes.bool.isRequired,
     comments: React.PropTypes.array,
   },
@@ -26,13 +26,13 @@ var CommentList = React.createClass({
     var s = this.state;
     var comments = _.map(p.comments, function(comment, i) {
       var commentBeingEdited = (s.commentBeingEditedId) && (comment.id == s.commentBeingEditedId);
-      var commentBeingDeleted = (s.commentBeingDeletedId) && (comment.id = s.commentBeingDeletedId);
+      var commentBeingDeleted = (s.commentBeingDeletedId) && (comment.id == s.commentBeingDeletedId);
       if (commentBeingEdited) { return <EditCommentCard key={i} comment={comment} /> }
       if (commentBeingDeleted) { return <DeleteCommentCard key={i} comment={comment} /> }
       return <CommentCard key={i} comment={comment} currentUser={this.props.currentUser} />
     }.bind(this));
 
-    if (p.noComments) { return <h1>No comments yet</h1> }
+    if (p.noComments) { return <h1 className="no-comments">No Comments Yet</h1> }
 
     return (
       <div className="comment-list">

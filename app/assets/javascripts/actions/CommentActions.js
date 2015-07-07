@@ -3,5 +3,6 @@ var CommentActions = Reflux.createActions([
   "toggleDeleteComment",
   "toggleEditComment",
   "toggleShowReplies",
+  "updateComment",
   "deleteComment",
 ]);

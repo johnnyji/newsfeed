@@ -1,7 +1,7 @@
 var CommentBox = React.createClass({
   propTypes: {
     newsItemId: React.PropTypes.number.isRequired,
-    currentUser: React.PropTypes.object.isRequired,
+    currentUser: React.PropTypes.object,
   },
   getInitialState: function() {
     return {
@@ -23,8 +23,20 @@ var CommentBox = React.createClass({
     var commentBox = React.findDOMNode(this.refs.comment);
     commentBox.value = "";
   },
+  _loginUser: function() {
+    AuthenticationActions.authenticateWithTwitter();
+  },
   render: function() {
     var p = this.props;
+
+    if (_.isNull(p.currentUser)) {
+      return <div />
+      // return (
+      //   <div className="login-to-comment">
+      //     <h1>Please <span onClick={this._loginUser}>log in</span> to comment.</h1>
+      //   </div>
+      // );
+    }
 
     return (
       <div className="comment-box">

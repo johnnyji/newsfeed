@@ -14,6 +14,7 @@ var SignupModal = React.createClass({
         <ExitModalButton exitCallback={this._toggleSignupModal} />
 
         <div className="signup-form">
+          <h1>Before you do that, we need to know who you are!</h1>
           <button onClick={this._handleTwitterAuth}>Sign in with Twitter</button>
         </div>
 

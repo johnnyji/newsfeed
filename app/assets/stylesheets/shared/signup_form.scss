@@ -1,0 +1,17 @@
+@import "clarity";
+
+.signup-form {
+  text-align: center;
+  h1 {
+    position: relative;
+    margin: 1.5rem auto;
+    font-weight: 300;
+  }
+  button {
+    @include button-style;
+    position: relative;
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    padding: 0.8rem 1.2rem;
+  }
+}

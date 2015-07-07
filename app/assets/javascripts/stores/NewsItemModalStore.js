@@ -41,4 +41,21 @@ var NewsItemModalStore = Reflux.createStore({
       successCallback();
     }.bind(this));
   },
+  onHandleUpdateComment: function(commentId, commentBody) {
+    var comment = this._findComment(commentId);
+    comment.body = commentBody;
+    this.trigger(this.state);
+  },
+  onHandleDeleteComment: function(commentId) {
+    var commentIndex = _.findIndex(this.state.comments, function(comment) {
+      return parseInt(comment.id) === parseInt(commentId)
+    });
+    this.state.comments.splice(commentIndex, 1);
+    this.trigger(this.state);
+  },
+  _findComment: function(commentId) {
+    return _.filter(this.state.comments, function(comment) {
+      if (parseInt(comment.id) === parseInt(commentId)) { return comment; }
+    });
+  }
 });

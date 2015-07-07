@@ -1,6 +1,6 @@
 var CommentCard = React.createClass({
   propTypes: {
-    currentUser: React.PropTypes.object.isRequired,
+    currentUser: React.PropTypes.object,
     comment: React.PropTypes.object.isRequired,
   },
   _toggleReplies: function() {
@@ -15,10 +15,7 @@ var CommentCard = React.createClass({
   render: function() {
     var p = this.props;
     var s = this.state;
-    var userIsCommenter = (p.currentUser.id === p.comment.user.id);
-
-    // if (s.editComment) { return <EditCommentCard comment={p.comment} /> }
-    // if (s.deleteComment) { return <ConfirmDeleteBox /> }
+    var userIsCommenter = p.currentUser && (p.currentUser.id === p.comment.user.id);
 
     return (
       <div className="comment-card">

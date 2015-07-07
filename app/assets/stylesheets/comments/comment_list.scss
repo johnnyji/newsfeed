@@ -1,5 +1,11 @@
 @import "clarity";
 
+.no-comments {
+  color: $light-text-color;
+  margin: 3.5rem 0;
+  font-weight: 300;
+}
+
 .comment-list {
   position: relative;
   margin: 3rem auto;
@@ -28,12 +34,12 @@
           position: relative;
           display: inline-block;
           color: $light-text-color;
-          margin: 0;  
+          margin: 0;
         }
         .options {
           position: absolute;
           right: 1rem;
-          top: 0.5rem; 
+          top: 0.5rem;
           i {
             @include transition(0.3s);
             color: $light-text-color;
@@ -48,7 +54,7 @@
         margin: 0;
       }
       .comment {
-        margin: 1rem 0; 
+        margin: 1rem 0;
       }
       .additional-info {
         margin-bottom: 0.3rem;

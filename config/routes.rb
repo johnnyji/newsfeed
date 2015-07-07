@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   controller :comments do
     post "/comments" => :index
     post "/comment" => :create
+    post "/update_comment" => :update
     delete "/comment" => :destroy
   end
 

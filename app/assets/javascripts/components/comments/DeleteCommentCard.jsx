@@ -11,8 +11,11 @@ var DeleteCommentCard = React.createClass({
   render: function() {
     return (
       <div className="comment-card">
-        <button onClick={this._confirmDelete}>Yes</button>
-        <button onClick={this._regretDelete}>No</button>
+        <p className="delete-comment-confirm">Are you sure you want to delete this comment?</p>
+        <div className="delete-buttons-container">
+          <button className="delete-comment-button" onClick={this._confirmDelete}>Yes</button>
+          <button className="delete-comment-button" onClick={this._regretDelete}>No</button>
+        </div>
       </div>
     );
   }

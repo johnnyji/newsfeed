@@ -62,16 +62,6 @@ ActiveRecord::Schema.define(version: 20150701191433) do
   add_index "replies", ["comment_id"], name: "index_replies_on_comment_id", using: :btree
   add_index "replies", ["user_id"], name: "index_replies_on_user_id", using: :btree
 
-  create_table "stars", force: :cascade do |t|
-    t.integer  "news_item_id"
-    t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "stars", ["news_item_id"], name: "index_stars_on_news_item_id", using: :btree
-  add_index "stars", ["user_id"], name: "index_stars_on_user_id", using: :btree
-
   create_table "upvotes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "news_item_id"
@@ -95,8 +85,6 @@ ActiveRecord::Schema.define(version: 20150701191433) do
   end
 
   add_foreign_key "news_items", "users"
-  add_foreign_key "stars", "news_items"
-  add_foreign_key "stars", "users"
   add_foreign_key "upvotes", "news_items"
   add_foreign_key "upvotes", "users"
 end

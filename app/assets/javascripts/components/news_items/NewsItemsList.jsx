@@ -29,6 +29,9 @@ var NewsItemsList = React.createClass({
   _toggleNewPostModal: function() {
     AppActions.toggleNewPostModal();
   },
+  _toggleSignupModal: function() {
+    AppActions.toggleSignupModal();
+  },
   render: function() {
     var s = this.state;
     var p = this.props;
@@ -38,6 +41,23 @@ var NewsItemsList = React.createClass({
     });
 
     if (!s.componentReady) { return <Spinner /> }
+
+    if (!p.currentUser) {
+      return (
+        <div className="news-item-list-container">
+          {s.itemBeingViewed && <NewsItemModal newsItem={s.itemBeingViewed} currentUser={p.currentUser}/>}
+          {s.message &&
+            <div className="no-news-items">
+              <h1 className="message">{s.message}</h1>
+              <button className="new-post-button" onClick={this._toggleSignupModal}>
+                Be the first to post!
+              </button>
+            </div>
+          }
+          {news_items}
+        </div>
+      );
+    }
 
     return (
       <div className="news-item-list-container">

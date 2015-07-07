@@ -9,6 +9,9 @@ var NewsItemModal = React.createClass({
     return {
       comments: state.comments,
       noComments: state.noComments,
+      editComment: state.editComment,
+      deleteComment: state.deleteComment,
+      selectedComment: state.selectedComment,
     };
   },
   componentDidMount: function() {
@@ -66,8 +69,15 @@ var NewsItemModal = React.createClass({
                 </div>
               </div>
               <div className="item-description">{newsItem.description}</div>
-              <CommentBox currentUser={p.currentUser} newsItemId={newsItem.id}/>
-              <CommentList comments={s.comments} noComments={s.noComments} />
+              <CommentBox
+                currentUser={p.currentUser}
+                newsItemId={newsItem.id}
+              />
+              <CommentList
+                currentUser={p.currentUser}
+                comments={s.comments}
+                noComments={s.noComments}
+              />
             </div>
 
           </div>

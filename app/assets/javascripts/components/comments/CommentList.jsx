@@ -1,18 +1,41 @@
 var CommentList = React.createClass({
+  mixins: [Reflux.ListenerMixin],
   propTypes: {
+    currentUser: React.PropTypes.object.isRequired,
     noComments: React.PropTypes.bool.isRequired,
-    comments: React.PropTypes.array
+    comments: React.PropTypes.array,
+  },
+  getInitialState: function() {
+    var state = CommentStore.getInitialState();
+    return {
+      commentBeingEditedId: state.commentBeingEditedId,
+      commentBeingDeletedId: state.commentBeingDeletedId,
+    };
+  },
+  componentDidMount: function() {
+    this.listenTo(CommentStore, this._updateState);
+  },
+  _updateState: function(data) {
+    this.setState({
+      commentBeingDeletedId: data.commentBeingDeletedId,
+      commentBeingEditedId: data.commentBeingEditedId,
+    });
   },
   render: function() {
     var p = this.props;
+    var s = this.state;
     var comments = _.map(p.comments, function(comment, i) {
-      return <CommentCard key={i} comment={comment} />
-    });
+      var commentBeingEdited = (s.commentBeingEditedId) && (comment.id == s.commentBeingEditedId);
+      var commentBeingDeleted = (s.commentBeingDeletedId) && (comment.id = s.commentBeingDeletedId);
+      if (commentBeingEdited) { return <EditCommentCard key={i} comment={comment} /> }
+      if (commentBeingDeleted) { return <DeleteCommentCard key={i} comment={comment} /> }
+      return <CommentCard key={i} comment={comment} currentUser={this.props.currentUser} />
+    }.bind(this));
 
     if (p.noComments) { return <h1>No comments yet</h1> }
 
     return (
-      <div>
+      <div className="comment-list">
         {comments}
       </div>
     );

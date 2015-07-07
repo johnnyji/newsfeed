@@ -1,0 +1,64 @@
+@import "clarity";
+
+.comment-list {
+  position: relative;
+  margin: 3rem auto;
+
+  .comment-card {
+    position: relative;
+    background-color: whitesmoke;
+    border-bottom: 1px solid $text-color;
+    padding: 0.5rem;
+    margin: 1.5rem 0;
+    .commenter-picture-container {
+      position: relative;
+      display: inline-block;
+      margin-right: 1rem;
+      background-color: whitesmoke;
+      .picture {
+        border-radius: 100%;
+        height: 25px;
+      }
+    }
+    .comment-container {
+      display: inline-block;
+      vertical-align: top;
+      .commenter-options {
+        .commenter-name {
+          position: relative;
+          display: inline-block;
+          color: $light-text-color;
+          margin: 0;  
+        }
+        .options {
+          position: absolute;
+          right: 1rem;
+          top: 0.5rem; 
+          i {
+            @include transition(0.3s);
+            color: $light-text-color;
+            margin: 0 0 0 0.5rem;
+            &:hover { cursor: pointer; color: $secondary-brand-color; }
+          }
+        }
+      }
+      .commenter-name {
+        vertical-align: top;
+        color: $light-text-color;
+        margin: 0;
+      }
+      .comment {
+        margin: 1rem 0; 
+      }
+      .additional-info {
+        margin-bottom: 0.3rem;
+        font-size: 0.9rem;
+        .show-replies {
+          @include transition(0.3s);
+          &:hover { color: $secondary-brand-color; cursor: pointer; }
+        }
+      }
+    }
+  }
+
+}

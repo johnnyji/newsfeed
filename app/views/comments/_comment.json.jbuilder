@@ -1,3 +1,4 @@
+json.id         comment.id
 json.body       comment.body
 json.created_at format_date(comment.created_at)
 json.user       comment.user, :id, :name, :profile_thumbnail

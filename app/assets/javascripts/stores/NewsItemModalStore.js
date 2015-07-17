@@ -1,6 +1,5 @@
 var NewsItemModalState = {
   comments: [],
-  noComments: false,
 }
 
 var NewsItemModalStore = Reflux.createStore({
@@ -19,7 +18,6 @@ var NewsItemModalStore = Reflux.createStore({
       data: { news_item_id: newsItemId }
     })
     .done(function(data) {
-      if (data.message) { this.state.noComments = true; }
       if (data.comments) { this.state.comments = data.comments; }
       this.trigger(this.state);
     }.bind(this));
@@ -38,7 +36,8 @@ var NewsItemModalStore = Reflux.createStore({
     .done(function(data) {
       this.state.comments.unshift(data.comment);
       this.trigger(this.state);
-      successCallback();
+      successCallback(); 
+      // successCallback notifies the component the comment was successfully created so the component can then clear out the comment field.
     }.bind(this));
   },
   onHandleUpdateComment: function(commentId, commentBody) {

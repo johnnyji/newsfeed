@@ -8,10 +8,6 @@ var NewsItemModal = React.createClass({
     var state = NewsItemModalStore.getInitialState();
     return {
       comments: state.comments,
-      noComments: state.noComments,
-      editComment: state.editComment,
-      deleteComment: state.deleteComment,
-      selectedComment: state.selectedComment,
     };
   },
   componentDidMount: function() {
@@ -35,7 +31,6 @@ var NewsItemModal = React.createClass({
   _updateState: function(data) {
     this.setState({
       comments: data.comments,
-      noComments: data.noComments,
     });
   },
   render: function() {
@@ -76,7 +71,6 @@ var NewsItemModal = React.createClass({
               <CommentList
                 currentUser={p.currentUser}
                 comments={s.comments}
-                noComments={s.noComments}
               />
             </div>
 

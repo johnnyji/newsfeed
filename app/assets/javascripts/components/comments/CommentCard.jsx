@@ -3,6 +3,17 @@ var CommentCard = React.createClass({
     currentUser: React.PropTypes.object,
     comment: React.PropTypes.object.isRequired,
   },
+  getInitialState: function() {
+    return {
+      showCommentOptions: false,
+    };
+  },
+  _showCommentOptions: function() {
+    this.setState({ showCommentOptions: true });
+  },
+  _hideCommentOptions: function() {
+    this.setState({ showCommentOptions: false });
+  },
   _toggleReplies: function() {
     this.setState({ showReplies: !this.state.showReplies });
   },
@@ -29,8 +40,15 @@ var CommentCard = React.createClass({
             <div className="commenter-options">
               <p className="commenter-name">{p.comment.user.name}</p>
               <div className="options">
-                <i className="fa fa-edit" onClick={this._editComment}></i>
-                <i className="fa fa-times" onClick={this._deleteComment}></i>
+                <span className="ellipsis" onMouseEnter={this._showCommentOptions} onMouseLeave={this._hideCommentOptions}>...</span>
+                {s.showCommentOptions &&
+                  <div className="comment-options" onMouseEnter={this._showCommentOptions} onMouseLeave={this._hideCommentOptions}>
+                    {/*<i className="fa fa-edit" onClick={this._editComment}></i>
+                    <i className="fa fa-times" onClick={this._deleteComment}></i>*/}
+                    <p onClick={this._editComment}>Edit</p>
+                    <p onClick={this._deleteComment}>Delete</p>
+                  </div>
+                }
               </div>
             </div>
           }

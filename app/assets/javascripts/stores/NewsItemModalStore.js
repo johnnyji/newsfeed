@@ -36,7 +36,7 @@ var NewsItemModalStore = Reflux.createStore({
     .done(function(data) {
       this.state.comments.unshift(data.comment);
       this.trigger(this.state);
-      successCallback(); 
+      successCallback();
       // successCallback notifies the component the comment was successfully created so the component can then clear out the comment field.
     }.bind(this));
   },

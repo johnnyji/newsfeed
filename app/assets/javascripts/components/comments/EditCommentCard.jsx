@@ -26,8 +26,8 @@ var EditCommentCard = React.createClass({
           </div>
           <textarea ref="comment" className="edit-comment" defaultValue={p.comment.body}></textarea>
           <div className="additional-info">
-            <button onClick={this._saveComment}>Save</button>
-            <button onClick={this._exitEditMode}>Nevermind</button>
+            <div className="options-button" onClick={this._saveComment}>Save</div>
+            <div className="options-button" onClick={this._exitEditMode}>Nevermind</div>
           </div>
         </div>
       </div>

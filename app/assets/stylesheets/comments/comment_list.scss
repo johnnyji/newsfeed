@@ -39,12 +39,26 @@
         .options {
           position: absolute;
           right: 1rem;
-          top: 0.5rem;
-          i {
-            @include transition(0.3s);
-            color: $light-text-color;
-            margin: 0 0 0 0.5rem;
-            &:hover { cursor: pointer; color: $secondary-brand-color; }
+          top: -5px;
+          .ellipsis {
+            position: relative;
+            font-size: 1.8rem;
+            &:hover { cursor: pointer; }
+          }
+          .comment-options {
+            position: absolute;
+            z-index: 2;
+            cursor: pointer;
+            padding: 0.3rem 1rem;
+            box-shadow: 0 0 2px #282828;
+            background-color: whitesmoke;
+            p { 
+              color: $primary-brand-color;
+              font-size: 1.1rem;
+              margin: 0.3rem 0;
+              cursor: pointer;
+              &:hover { color: $secondary-brand-color; } 
+            }
           }
         }
       }

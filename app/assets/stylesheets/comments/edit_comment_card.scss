@@ -1,21 +1,33 @@
 @import "clarity";
 
-.edit-comment {
-  position: relative;
-  margin: 0.5rem 0;
-  padding: 0.3rem;
-  border: 1px solid $light-text-color;
-  border-radius: 3px;
-  min-height: 100px;
-  min-width: 350px;
-  resize: vertical;
-  outline: none;
-  font-size: 1.05rem;
-  font-weight: 300;
-  button {
-    @include button-style;
-    margin: 0 0.3rem;
-    padding: 0.3rem 1rem;
-    font-size: 1.1rem;
+.comment-container {
+  .edit-comment {
+    position: relative;
+    margin: 0.5rem 0;
+    padding: 0.3rem;
+    border: 1px solid $light-text-color;
+    border-radius: 3px;
+    min-height: 100px;
+    min-width: 350px;
+    resize: vertical;
+    outline: none;
+    font-size: 1.05rem;
+    font-weight: 300;
   }
+  .additional-info {
+    .options-button {
+      position: relative;
+      display: inline-block;
+      color: $primary-brand-color;
+      font-weight: 400;
+      text-decoration: underline;
+      margin: 0.3rem;
+      font-size: 1.1rem;
+      &:hover {
+        cursor: pointer;
+        color: $secondary-brand-color;
+      }
+    }
+  }
+
 }
